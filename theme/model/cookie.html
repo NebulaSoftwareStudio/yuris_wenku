@@ -1,0 +1,31 @@
+<!--cookies提示框-->
+<div class="card subscribe mdc-bg-orange-300" id="cookies_dialog"
+     style="position: fixed;z-index: 99;left: 25px;bottom: 0;width: 300px;">
+    <div class="subscribe__icon">
+        <i class="zmdi zmdi-shield-security"></i>
+    </div>
+
+    <h2>Cookies 与 Yuris 隐私权政策</h2>
+    <small>为方便Yuris文库为您提供个性化的服务，我们将会使用 Cookies 存储您的相关信息，包括您的浏览历史、登录状态与授权许可凭证等。如果不了解 Cookies
+        技术，您可以<a
+                href="https://baike.baidu.com/item/cookie/1119"
+                target="_blank">点击此处</a>了解更多。<br/>点击下方的按钮，即表示您同意我们的隐私权政策并使用
+        Cookies 。
+    </small>
+
+    <button class="btn btn--circle" id="close_cookies" onclick="close_msg();">
+        <i class="zmdi zmdi-check mdc-text-orange-400"></i>
+    </button>
+
+</div>
+<script>
+
+    function close_msg() {
+        $("#cookies_dialog").animate({left: "-1000px"}, 500);
+        setTimeout(function () {
+            document.getElementById("cookies_dialog").remove();
+        }, 500);
+        addCookie('use_cookies', 'allow', Infinity);
+    }
+</script>
+<!--cookies提示框结束-->

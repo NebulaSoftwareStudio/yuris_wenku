@@ -1,0 +1,239 @@
+<!--********************************页面主体*****************************************-->
+<body>
+
+<!--********************************loading*****************************************-->
+<div id="page-loader">
+    <div class="page-loader__spinner"></div>
+</div>
+<!-- loading结束 -->
+
+<!--********************************head与导航部分*****************************************-->
+<header id="header">
+
+    <div class="header__top">
+        <div class="container">
+            <ul class="top-nav">
+                <li class="dropdown top-nav__guest">
+                    <a data-toggle="dropdown" href=""><span
+                            style="vertical-align: inherit;">注册</span></a>
+
+                    <form class="dropdown-menu stop-propagate">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="登录名">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="密码">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="确认密码">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <p>
+                            <small><span style="vertical-align: inherit;">通过注册Yuris文库，即表示您同意我们的</span>
+                                <a href=""><span style="vertical-align: inherit;">条款和条件</span></a>
+                                <span
+                                        style="vertical-align: inherit;">。</span></small>
+                        </p>
+
+                        <button class="btn btn-primary btn-block m-t-10 m-b-10">注册</button>
+
+                        <div class="top-nav__auth">
+                            <span>或者</span>
+
+                            <div>使用其他方式注册</div>
+
+                            <a href="" class="mdc-bg-blue-500">
+                                <i class="zmdi zmdi-facebook"></i>
+                            </a>
+
+                            <a href="" class="mdc-bg-cyan-500">
+                                <i class="zmdi zmdi-twitter"></i>
+                            </a>
+
+                            <a href="" class="mdc-bg-red-400">
+                                <i class="zmdi zmdi-google"></i>
+                            </a>
+                        </div>
+
+                    </form>
+                </li>
+
+                <li class="dropdown top-nav__guest">
+                    <a data-toggle="dropdown" href="" data-rmd-action="switch-login">登录</a>
+
+                    <div class="dropdown-menu">
+                        <div class="tab-content">
+                            <form class="tab-pane active in fade" id="top-nav-login">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="登录名">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="密码">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <button class="btn btn-primary btn-block m-t-10 m-b-10">登录</button>
+
+                                <div class="text-center">
+                                    <a href="#top-nav-forgot-password" data-toggle="tab">
+                                        <small>忘记了电子邮件/密码？</small>
+                                    </a>
+                                </div>
+
+                                <div class="top-nav__auth">
+                                    <span>或</span>
+
+                                    <div>使用其他方式登录</div>
+
+                                    <a href="" class="mdc-bg-blue-500">
+                                        <i class="zmdi zmdi-facebook"></i>
+                                    </a>
+
+                                    <a href="" class="mdc-bg-cyan-500">
+                                        <i class="zmdi zmdi-twitter"></i>
+                                    </a>
+
+                                    <a href="" class="mdc-bg-red-400">
+                                        <i class="zmdi zmdi-google"></i>
+                                    </a>
+                                </div>
+                            </form>
+
+                            <form class="tab-pane fade forgot-password" id="top-nav-forgot-password">
+                                <a href="#top-nav-login" class="top-nav__back" data-toggle="tab"></a>
+
+                                <p>请输入您注册时提供的电子邮箱地址，如果与账户匹配，重设链接将发送至该邮箱中。</p>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="您的邮件地址">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <button class="btn btn-warning btn-block">重设密码</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
+                <!--                <li class="pull-right top-nav__icon">-->
+                <!--                    <a href=""><i class="zmdi zmdi-facebook"></i></a>-->
+                <!--                </li>-->
+                <li class="pull-right top-nav__icon">
+                    <a href="https://twitter.com/yuris_wp" title="关注官方Twitter"><i class="zmdi zmdi-twitter"></i></a>
+                </li>
+                <!--                <li class="pull-right top-nav__icon">-->
+                <!--                    <a href=""><i class="zmdi zmdi-google"></i></a>-->
+                <!--                </li>-->
+
+                <li class="pull-right hidden-xs"><span><i class="zmdi zmdi-email"></i>wenku@yurishouse.net</span></li>
+                <li class="pull-right hidden-xs"><span><i class="zmdi zmdi-phone"></i>400-34593007</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="header__main">
+        <div class="container">
+
+            <!--标题-->
+            <a class="logo" href="./">
+                <img src="assets/image/logo.png" alt="">
+                <div class="logo__text">
+                    <span>Yuris文库</span>
+                    <span>Write Your Tomorrow.</span>
+                </div>
+            </a>
+            <!--标题结束-->
+
+            <!--手机侧栏开启按钮-->
+            <div class="navigation-trigger visible-xs visible-sm" data-rmd-action="block-open"
+                 data-rmd-target=".navigation">
+                <i class="zmdi zmdi-menu"></i>
+            </div>
+            <!--手机侧栏开启按钮结束-->
+
+            <ul class="navigation">
+                <!--手机侧栏返回按钮-->
+                <li class="visible-xs visible-sm"><a class="navigation__close" data-rmd-action="navigation-close"
+                                                     href=""><i class="zmdi zmdi-long-arrow-right"></i></a></li>
+                <!--手机侧栏返回按钮结束-->
+
+
+                <!--动态输出导航-->
+
+                <li class="navigation__dropdown">
+                    <a href="./">主页</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="admin/" target="_blank">文库编辑部入口</a></li>
+                    </ul>
+                </li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">小说作品</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=14">轻小说与长篇连载</a></li>
+                        <li><a href="list.php?cid=13">短篇小说</a></li>
+                    </ul>
+                </li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">文档</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=10">编程与技术</a></li>
+                        <li><a href="list.php?cid=11">论文报告</a></li>
+                        <li><a href="list.php?cid=24">资源</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="list.php?cid=4">Yuris月刊</a></li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">公告</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=22">站务</a></li>
+                        <li><a href="announcement.php">文库编辑部公告板</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.php">关于Yuris文库</a></li>
+
+                <!--动态输出导航结束-->
+
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+
+
+<!--********************************搜索功能*****************************************-->
+<div class="action-header">
+    <div class="container">
+        <div class="action-header__item action-header__item--search">
+            <form action="search.php" method="GET">
+                <input type="text" class="hidden-sm hidden-xs" name="d_s" placeholder="搜索文章或文集……"><!-- For desktop -->
+                <input type="text" class="visible-xs visible-sm" name="m_s" placeholder="轻触搜索文章或文集……"><!-- For mobile -->
+                <input type="submit" class="hidden" />
+            </form>
+        </div>
+
+        <div class="action-header__item action-header__item--tags hidden-xs">
+            <!--动态输出热门标签-->
+            <a href="">#物语永无结篇</a>
+            <a href="">#鲁迅</a>
+            <a href="">#雪国</a>
+            <a href="" class="hidden-sm">#こころ</a>
+            <a href="" class="hidden-sm">#绝笔</a>
+            <!--动态输出热门标签结束-->
+        </div>
+    </div>
+</div>

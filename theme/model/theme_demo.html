@@ -1,0 +1,900 @@
+<!-- 诶诶诶诶琪……啊！（HR啦） -->
+<!-- 对我们的页面感兴趣嘛？Yuris文库实际上是个开源项目啦~前往Github可以搜索到哦 -->
+<!-- 想加入我们吗？注册一个NES Club账户吧，求你啦。 -->
+<!-- 看页面很不顺眼？那就加入我们的开发团队吧~ 我们需要几个前端工程师和一个Android开发工程师，有游戏开发经验优先哦~ -->
+<!-- 有意向的话欢迎您发送简历到 bainesing@nebula-soft.com ，祝您生活愉快~ -->
+
+<!DOCTYPE html>
+<html lang="zh-rcn">
+<!--[if IE 9 ]>
+<html class="ie9" lang="zh-rcn"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>欢迎访问Yuris文库 | 于繁星之下</title>
+    <meta name="Description" content="Yuris文库是一个小说与故事分享网站，站内文章与书籍资源由用户上传。">
+    <meta name="Keywords" content="Yuris文库,文库">
+    <meta name="author" content="Nebula Software Studio & Yuris Studio">
+    <meta name="revised" content="Hanawa Hinata 2019/04/09">
+    <meta name="generator" content="PhpStorm">
+
+    <!-- 第三方插件 -->
+
+    <!-- Material design 颜色库 -->
+    <link href="assets/css/material-design-iconic-font.min.css"
+          rel="stylesheet">
+
+    <!-- CSS 动画 -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+    <!-- Select2 - Custom Selects -->
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+
+    <!-- rateYo - Ratings -->
+    <link rel="stylesheet" href="assets/css/jquery.rateyo.css">
+
+    <!-- NoUiSlider - Input slider -->
+    <link rel="stylesheet" href="assets/css/nouislider.min.css">
+
+    <!-- 站点css -->
+    <link rel="stylesheet" href="assets/css/app_1.min.css">
+    <link rel="stylesheet" href="assets/css/app_2.min.css">
+
+    <!-- Page Loader JS -->
+    <script src="assets/js/page-loader.min.js" async></script>
+
+    <!--百度链接提交与推广-->
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+
+            function getCookie(name) {
+                var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+                if (arr = document.cookie.match(reg))
+
+                    return unescape(arr[2]);
+                else
+                    return null;
+            }
+
+            if_use_cookie = getCookie('use_cookies');
+            if (if_use_cookie != "allow") {
+                document.cookie = "use_cookies=refuse";
+            }
+
+        })();
+    </script>
+
+
+</head>
+
+
+<!--********************************页面主体*****************************************-->
+<body>
+
+<!--********************************loading*****************************************-->
+<div id="page-loader">
+    <div class="page-loader__spinner"></div>
+</div>
+<!-- loading结束 -->
+
+<!--********************************head与导航部分*****************************************-->
+<header id="header">
+
+    <div class="header__top">
+        <div class="container">
+            <ul class="top-nav">
+                <li class="dropdown top-nav__guest">
+                    <a data-toggle="dropdown" href=""><span
+                            style="vertical-align: inherit;">注册</span></a>
+
+                    <form class="dropdown-menu stop-propagate">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="登录名">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="密码">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="确认密码">
+                            <i class="form-group__bar"></i>
+                        </div>
+
+                        <p>
+                            <small><span style="vertical-align: inherit;">通过注册Yuris文库，即表示您同意我们的</span>
+                                <a href=""><span style="vertical-align: inherit;">条款和条件</span></a>
+                                <span
+                                    style="vertical-align: inherit;">。</span></small>
+                        </p>
+
+                        <button class="btn btn-primary btn-block m-t-10 m-b-10">注册</button>
+
+                        <div class="top-nav__auth">
+                            <span>或者</span>
+
+                            <div>使用其他方式注册</div>
+
+                            <a href="" class="mdc-bg-blue-500">
+                                <i class="zmdi zmdi-facebook"></i>
+                            </a>
+
+                            <a href="" class="mdc-bg-cyan-500">
+                                <i class="zmdi zmdi-twitter"></i>
+                            </a>
+
+                            <a href="" class="mdc-bg-red-400">
+                                <i class="zmdi zmdi-google"></i>
+                            </a>
+                        </div>
+
+                    </form>
+                </li>
+
+                <li class="dropdown top-nav__guest">
+                    <a data-toggle="dropdown" href="" data-rmd-action="switch-login">登录</a>
+
+                    <div class="dropdown-menu">
+                        <div class="tab-content">
+                            <form class="tab-pane active in fade" id="top-nav-login">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="登录名">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="密码">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <button class="btn btn-primary btn-block m-t-10 m-b-10">登录</button>
+
+                                <div class="text-center">
+                                    <a href="#top-nav-forgot-password" data-toggle="tab">
+                                        <small>忘记了电子邮件/密码？</small>
+                                    </a>
+                                </div>
+
+                                <div class="top-nav__auth">
+                                    <span>或</span>
+
+                                    <div>使用其他方式登录</div>
+
+                                    <a href="" class="mdc-bg-blue-500">
+                                        <i class="zmdi zmdi-facebook"></i>
+                                    </a>
+
+                                    <a href="" class="mdc-bg-cyan-500">
+                                        <i class="zmdi zmdi-twitter"></i>
+                                    </a>
+
+                                    <a href="" class="mdc-bg-red-400">
+                                        <i class="zmdi zmdi-google"></i>
+                                    </a>
+                                </div>
+                            </form>
+
+                            <form class="tab-pane fade forgot-password" id="top-nav-forgot-password">
+                                <a href="#top-nav-login" class="top-nav__back" data-toggle="tab"></a>
+
+                                <p>请输入您注册时提供的电子邮箱地址，如果与账户匹配，重设链接将发送至该邮箱中。</p>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="您的邮件地址">
+                                    <i class="form-group__bar"></i>
+                                </div>
+
+                                <button class="btn btn-warning btn-block">重设密码</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
+<!--                <li class="pull-right top-nav__icon">-->
+<!--                    <a href=""><i class="zmdi zmdi-facebook"></i></a>-->
+<!--                </li>-->
+                <li class="pull-right top-nav__icon">
+                    <a href="https://twitter.com/yuris_wp" title="关注官方Twitter"><i class="zmdi zmdi-twitter"></i></a>
+                </li>
+<!--                <li class="pull-right top-nav__icon">-->
+<!--                    <a href=""><i class="zmdi zmdi-google"></i></a>-->
+<!--                </li>-->
+
+                <li class="pull-right hidden-xs"><span><i class="zmdi zmdi-email"></i>wenku@yurishouse.net</span></li>
+                <li class="pull-right hidden-xs"><span><i class="zmdi zmdi-phone"></i>400-34593007</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="header__main">
+        <div class="container">
+
+            <!--标题-->
+            <a class="logo" href="./">
+                <img src="img/logo.png" alt="">
+                <div class="logo__text">
+                    <span>Yuris文库</span>
+                    <span>Write Your Tomorrow.</span>
+                </div>
+            </a>
+            <!--标题结束-->
+
+            <!--手机侧栏开启按钮-->
+            <div class="navigation-trigger visible-xs visible-sm" data-rmd-action="block-open"
+                 data-rmd-target=".navigation">
+                <i class="zmdi zmdi-menu"></i>
+            </div>
+            <!--手机侧栏开启按钮结束-->
+
+            <ul class="navigation">
+                <!--手机侧栏返回按钮-->
+                <li class="visible-xs visible-sm"><a class="navigation__close" data-rmd-action="navigation-close"
+                                                     href=""><i class="zmdi zmdi-long-arrow-right"></i></a></li>
+                <!--手机侧栏返回按钮结束-->
+
+
+                <!--动态输出导航-->
+
+                <li class="navigation__dropdown">
+                    <a href="./">主页</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="admin/" target="_blank">文库编辑部入口</a></li>
+                    </ul>
+                </li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">小说作品</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=14">轻小说与长篇连载</a></li>
+                        <li><a href="list.php?cid=13">短篇小说</a></li>
+                    </ul>
+                </li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">文档</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=10">编程与技术</a></li>
+                        <li><a href="list.php?cid=11">论文报告</a></li>
+                        <li><a href="list.php?cid=24">资源</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="list.php?cid=4">Yuris月刊</a></li>
+
+                <li class="navigation__dropdown">
+                    <a href="" class="prevent-default">公告</a>
+                    <ul class="navigation__drop-menu">
+                        <li><a href="list.php?cid=22">站务</a></li>
+                        <li><a href="announcement.php">文库编辑部公告板</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.php">关于Yuris文库</a></li>
+
+                <!--动态输出导航结束-->
+
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+
+
+<!--********************************搜索功能*****************************************-->
+<div class="action-header">
+    <div class="container">
+        <div class="action-header__item action-header__item--search">
+            <form>
+                <input type="text" class="hidden-sm hidden-xs" placeholder="目前搜寻功能不可用…"><!-- For desktop -->
+                <input type="text" class="visible-xs visible-sm" placeholder="目前搜寻功能不可用……"><!-- For mobile -->
+            </form>
+        </div>
+
+        <div class="action-header__item action-header__item--tags hidden-xs">
+            <!--动态输出热门标签-->
+            <a href="">#Never Ending Story</a>
+            <a href="">#大数据</a>
+            <a href="">#孔乙己</a>
+            <a href="" class="hidden-sm">#illusions</a>
+            <a href="" class="hidden-sm">#Yuris月刊</a>
+            <!--动态输出热门标签结束-->
+        </div>
+    </div>
+</div>
+
+
+<!--********************************内容部分*****************************************-->
+<section class="section">
+    <div class="container">
+
+        <!--<header class="section__title">-->
+        <!--<h2>这是标题</h2>-->
+        <!--<small>这是小标题</small>-->
+        <!--</header>-->
+
+        <!--推荐文集专题-->
+
+        <!--如果这不是主页,输出栏目标题-->
+        <!--如果这个栏目没有内容-->
+        <div class="container" style="margin-bottom: 30px">
+            <h2>Yuris专题文集</h2>
+        </div>
+
+        <div class="row listings-grid">
+
+            <!--第一个热门-->
+
+            <div class="col-sm-4 col-md-4">
+                <div class="listings-grid__item">
+                    <a href="list.php?cid=31">
+                        <div class="listings-grid__main">
+                            <img src="img/special/corpus/Never Ending Story.jpg" alt="Never Ending Story">
+                            <div class="listings-grid__price">最后更新于2017年8月21日</div>
+                        </div>
+
+                        <div class="listings-grid__body">
+                            <small>Hanawa Hinata 著</small>
+                            <h5>Never Ending Story（物语永无结篇）</h5>
+                        </div>
+
+                        <ul class="listings-grid__attrs">
+                            <li>
+                                <div class="rmd-rate" data-rate-value="3.5" data-rate-readonly="true"></div>
+                            </li>
+                            <li>3.5分</li>
+                            <!--<li><i class="listings-grid__icon listings-grid__icon&#45;&#45;parking"></i> 02</li>-->
+                        </ul>
+                    </a>
+
+                    <div class="actions listings-grid__favorite">
+                        <div class="actions__toggle">
+                            <input type="checkbox">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                            <i class="zmdi zmdi-favorite"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--第二个热门-->
+
+            <div class="col-sm-4 col-md-4">
+                <div class="listings-grid__item">
+                    <a href="list.php?cid=29">
+                        <div class="listings-grid__main">
+                            <img src="img/special/corpus/呐喊.jpg" alt="呐喊">
+                            <div class="listings-grid__price">最后更新于1922年12月01日</div>
+                        </div>
+
+                        <div class="listings-grid__body">
+                            <small>鲁迅 著</small>
+                            <h5>呐喊</h5>
+                        </div>
+
+                        <ul class="listings-grid__attrs">
+                            <li>
+                                <div class="rmd-rate" data-rate-value="4.5" data-rate-readonly="true"></div>
+                            </li>
+                            <li>4.5分</li>
+                            <!--<li><i class="listings-grid__icon listings-grid__icon&#45;&#45;parking"></i> 02</li>-->
+                        </ul>
+                    </a>
+
+                    <div class="actions listings-grid__favorite">
+                        <div class="actions__toggle">
+                            <input type="checkbox">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                            <i class="zmdi zmdi-favorite"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--第三个热门-->
+
+            <div class="col-sm-4 col-md-4">
+                <div class="listings-grid__item">
+                    <a href="list.php?cid=30">
+                        <div class="listings-grid__main">
+                            <img src="img/special/corpus/こころ.jpg" alt="こころ">
+                            <div class="listings-grid__price">最后更新于1914年4月20日</div>
+                        </div>
+
+                        <div class="listings-grid__body">
+                            <small>夏目漱石 著</small>
+                            <h5>こころ（心）</h5>
+                        </div>
+
+                        <ul class="listings-grid__attrs">
+                            <li>
+                                <div class="rmd-rate" data-rate-value="4.5" data-rate-readonly="true"></div>
+                            </li>
+                            <li>4.0分</li>
+                            <!--<li><i class="listings-grid__icon listings-grid__icon&#45;&#45;parking"></i> 02</li>-->
+                        </ul>
+                    </a>
+
+                    <div class="actions listings-grid__favorite">
+                        <div class="actions__toggle">
+                            <input type="checkbox">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                            <i class="zmdi zmdi-favorite"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--********************************输出主要内容*****************************************-->
+
+        <div class="row">
+            <div class="col-md-8 col-sm-7">
+
+
+                <!--使用PHP动态输出文章概要-->
+
+
+                <!--如果这是子栏目,输出栏目标题-->
+                <!--如果这个栏目没有内容-->
+                <!--特殊专题-->
+
+                <div class="container" style="margin-bottom: 30px">
+                    <h2> 近期发表</h2>
+                </div>
+                <article class="card">
+                    <!--检查是否有图片-->
+
+                    <div class="card__header">
+                        <h2 style="font-size: 25px;">一件小事</h2>
+                        <small>鲁迅 发表于 [ 1970-09-17 14:27:17 ]</small>
+                    </div>
+                    <div class="card__body">
+                        这事到了现在，还是时时记起。我因此也时时煞了苦痛，努力的要想到我自己。几年来的文治武力，在我早如幼小时候所读过的“子曰诗云”一般，背不上半句了。独有这一件小事，却总是浮在我眼前，有时反更分明，教我惭愧，催我自新，并且增长我的勇气和希望。
+                        <div class="blog-more">
+                            <a href="show.php?id=26">阅读更多...</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <!--检查是否有图片-->
+
+                    <div class="card__header">
+                        <h2 style="font-size: 25px;">鸭的喜剧</h2>
+                        <small>鲁迅 发表于 [ 1970-09-17 14:25:14 ]</small>
+                    </div>
+                    <div class="card__body">
+                        俄国的盲诗人爱罗先珂⑵君带了他那六弦琴到北京之后不久，便向我诉苦说：“寂寞呀，寂寞呀，在沙漠上似的寂寞呀！”。这应该是真实的，但在我却未曾感得；我住得久了，“入芝兰之室，久而不闻其香”⑶，只以为很是嚷嚷罢了。然而我之所谓嚷嚷，或者也就是他之所谓寂寞罢。
+                        <div class="blog-more">
+                            <a href="show.php?id=25">阅读更多...</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <!--检查是否有图片-->
+
+                    <div class="card__header">
+                        <h2 style="font-size: 25px;">兔和猫</h2>
+                        <small>鲁迅 发表于 [ 1970-09-17 14:23:29 ]</small>
+                    </div>
+                    <div class="card__body">
+                        那黑猫是不能久在矮墙上高视阔步的了，我决定的想，于是又不由的一瞥那藏在书箱里的一瓶青酸钾。
+                        <div class="blog-more">
+                            <a href="show.php?id=24">阅读更多...</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <!--检查是否有图片-->
+
+                    <div class="card__header">
+                        <h2 style="font-size: 25px;">阿Q正传</h2>
+                        <small>鲁迅 发表于 [ 1970-09-17 14:21:31 ]</small>
+                    </div>
+                    <div class="card__body">
+                        至于舆论，在未庄是无异议，自然都说阿Ｑ坏，被枪毙便是他的坏的证据：不坏又何至于被枪毙呢？而城里的舆论却不佳，他们多半不满足，以为枪毙并无杀头这般好看；而且那是怎样的一个可笑的死囚呵，游了那么久的街，竟没有唱一句戏：他们白跟一趟了。。
+                        <div class="blog-more">
+                            <a href="show.php?id=23">阅读更多...</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <!--检查是否有图片-->
+
+                    <div class="card__header">
+                        <h2 style="font-size: 25px;">头发的故事</h2>
+                        <small>鲁迅 发表于 [ 1970-09-17 14:17:19 ]</small>
+                    </div>
+                    <div class="card__body">
+                        “他们都在社会的冷笑恶骂迫害倾陷里过了一生；现在他们的坟墓也早在忘却里渐渐平塌下去了。”
+                        <div class="blog-more">
+                            <a href="show.php?id=22">阅读更多...</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!--使用PHP动态输出底部页码-->
+
+                <nav class="text-center">
+                    <ul class="pagination">
+                        <li><a>首</a></li>
+                        <li><a><i class="zmdi zmdi-chevron-left"></i></a></li>
+                        <li class='active'><a href="?page=1">1</a></li>
+                        <li><a href="?page=2">2</a></li>
+                        <li><a href="?page=3">3</a></li>
+                        <li><a href="?page=4">4</a></li>
+                        <li><a href="?page=2" aria-label="Previous"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                        <li><a href="?page=4">终</a></li>
+                    </ul>
+                </nav>
+
+                <!--使用PHP动态输出底部页码结束-->
+                <!--使用PHP动态输出文章概要结束-->
+
+                <!--如果是要查看全文使用下面的输出-->
+                <!--输出完整文章结束-->
+
+
+            </div>
+
+            <!--********************************右侧栏*****************************************-->
+            <aside class="col-md-4 col-sm-5 hidden-xs">
+
+                <!--本分类中的栏目-->
+
+
+                <div class="card tags-list">
+                    <div class="card__header">
+                        <h2>本分类中的栏目</h2>
+                        <small>本分类有以下几个栏目</small>
+                    </div>
+                    <div class="card__body">
+                        <!--动态输出-->
+                        <a href="list.php?cid=1" class="tags-list__item" title="小说作品"> # 小说作品</a>
+                        <a href="list.php?cid=2" class="tags-list__item" title="文档"> # 文档</a>
+                        <a href="list.php?cid=4" class="tags-list__item" title="Yuris月刊"> # Yuris月刊</a>
+                        <a href="list.php?cid=21" class="tags-list__item" title="公告"> # 公告</a>
+                        <a href="list.php?cid=25" class="tags-list__item" title="专题"> # 专题</a>
+                        <a href="list.php?cid=32" class="tags-list__item" title="讨论版"> # 讨论版</a>
+                        <!--动态输出结束-->
+                    </div>
+                </div>
+
+
+                <!--本分类中的栏目结束-->
+
+                <!--热门文章-->
+                <div class="card">
+                    <div class="card__header">
+                        <h2>热门文章</h2>
+                        <small>近期在Yuris文库中的热门内容</small>
+                    </div>
+
+                    <div class="list-group">
+
+
+                        <a href="show.php?id=8" class="list-group-item media">
+                            <div class="pull-left">
+                                <img src="img/icons/bath@2x.png" alt="" class="list-group__img" width="65">
+                            </div>
+                            <div class="media-body list-group__text">
+                                <strong>欢迎来到Yuris文库！</strong>
+                                <small>欢迎来到Yuris文库！</small>
+                            </div>
+                        </a>
+
+
+                        <a href="show.php?id=12" class="list-group-item media">
+                            <div class="pull-left">
+                                <img src="img/icons/bath@2x.png" alt="" class="list-group__img" width="65">
+                            </div>
+                            <div class="media-body list-group__text">
+                                <strong>自序</strong>
+                                <small>自序</small>
+                            </div>
+                        </a>
+
+
+                        <a href="show.php?id=22" class="list-group-item media">
+                            <div class="pull-left">
+                                <img src="img/icons/bath@2x.png" alt="" class="list-group__img" width="65">
+                            </div>
+                            <div class="media-body list-group__text">
+                                <strong>头发的故事</strong>
+                                <small>头发的故事</small>
+                            </div>
+                        </a>
+
+
+                        <!--php脚本-->
+
+                        <!--动态输出结束-->
+
+                        <div class="p-10"></div>
+                    </div>
+                </div>
+
+
+                <!--浏览历史-->
+                <!--浏览历史结束-->
+
+                <!--活跃作者-->
+                <!--
+                  <div class="card">
+                      <div class="card__header">
+                          <h2>活跃作者</h2>
+                          <small>感谢以下作者对Yuris文库的支持</small>
+                      </div>
+                      <div class="list-group">
+                          <!--动态输出活跃作者基本信息-->
+                <!--输出样例-->
+                <!--https://r.pengyou.com/fcg-bin/cgi_get_portrait.fcg?uins=QQ号码-->
+                <!--
+<a class="list-group-item media" href="https://user.qzone.qq.com/2743587216" target="_blank">
+                    <div class="pull-left">
+                        <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=2743587216&spec=100" alt="" class="list-group__img img-circle" width="45"
+                             height="45">
+                    </div>
+                    <div class="media-body list-group__text">
+                        <strong>Hanawa Hinata</strong>
+                        <small class="list-group__text">「勝者には褒美を、敗者には罰を。」
+                        </small>
+                    </div>
+                </a>
+                <!--输出样例结束-->
+                <!--
+<a class="list-group-item media" href="https://user.qzone.qq.com/2449808818" target="_blank">
+                    <div class="pull-left">
+                        <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=2449808818&spec=100" alt="" class="list-group__img img-circle" width="45"
+                             height="45">
+                    </div>
+                    <div class="media-body list-group__text">
+                        <strong>Yuri</strong>
+                        <small class="list-group__text"><！-- 快看，这个人的代码又翻车了 -- >
+                        </small>
+                    </div>
+                </a>
+
+                <!--php脚本-->
+
+                <!--动态输出结束-->
+
+                <!--
+                          <div class="p-10"></div>
+                      </div>
+                  </div>-->
+                <!--活跃作者结束-->
+
+                <!--cookies提示框-->
+                <div class="card subscribe mdc-bg-orange-300" id="cookies_dialog"
+                     style="position: fixed;z-index: 99;left: 25px;bottom: 0px;width: 300px;">
+                    <div class="subscribe__icon">
+                        <i class="zmdi zmdi-email"></i>
+                    </div>
+
+                    <h2>Cookies 与 Yuris 隐私权政策</h2>
+                    <small>为方便Yuris文库为您提供个性化的服务，我们将会使用 Cookies 存储您的相关信息，包括您的浏览历史、登录状态与授权许可凭证等。如果不了解 Cookies 技术，您可以<a
+                            href="https://baike.baidu.com/item/cookie/1119" target="_blank">点击此处</a>了解更多。<br/>点击下方的按钮，即表示您同意我们的隐私权政策并使用
+                        Cookies 。
+                    </small>
+
+                    <button class="btn btn--circle" id="close_cookies" onclick="close_msg();">
+                        <i class="zmdi zmdi-check mdc-text-orange-400"></i>
+                    </button>
+
+                </div>
+                <script>
+                    function close_msg() {
+                        $("#cookies_dialog").animate({left: "-1000px"}, 500);
+                        document.cookie = "use_cookies=allow";
+                    }
+                </script>
+                <!--cookies提示框结束-->
+
+            </aside>
+            <!--右侧栏结束-->
+
+        </div>
+    </div>
+</section>
+
+<!--动态获取内容结束-->
+
+<!--********************************底部*****************************************-->
+
+<footer id="footer">
+    <div class="container hidden-xs">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="footer__block">
+                    <div class="footer__title">说明 ></div>
+                    <!--<img src="img/13+.png" width="110px" height="110px" />-->
+                    <b>[ 内容与文化作品分级 ]</b>
+                    <br/>
+                    <i>根据<a href="http://www.mcprc.gov.cn/whzx/bnsj/whscs/201611/t20161128_660714.htm"
+                            title="中华人民共和国文化部试行规定"
+                            target="_blank">中华人民共和国文化部试行规定</a>
+                        ，因本站所刊载之文化作品内容中可能含有轻微暴力内容
+                        ，所以要求您<b>必须年满十三岁</b>且需监护人许可方能访问本站点。</i>
+                    <br/>
+                    <br/>
+                    <b>[ 网站版式 ]</b>
+                    <br/>
+                    <i><a href="https://wrapbootstrap.com/theme/roost-material-design-real-estate-WB0765RX7"
+                          target="_blank">
+                        Roost</a> 提供设计与编码，设计灵感来源自
+                        <a href="https://google.com/design/">Material Design</a> 。
+                    </i>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="footer__block footer__block--blog">
+                    <div class="footer__title">合作单位 ></div>
+
+                    <a href="http://yurishouse.cn">
+                        Yuris工作室
+                        <small>产品运营维护与宣传支持</small>
+                    </a>
+                    <a href="http://nebula-soft.com">
+                        星云软件工作室
+                        <small>负责后台维护与网站数据安全更新</small>
+                    </a>
+                    <!--<a href="http://www.mcprc.gov.cn">-->
+                    <!--中华人民共和国文化部-->
+                    <!--<small>On 2016/06/10 at 12:59 PM</small>-->
+                    <!--</a>-->
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="footer__block">
+                    <a class="logo clearfix" href="">
+                        <div class="logo__text">
+                            <span>Yuris文库</span>
+                            <span>Write Your Tomorrow.</span>
+                        </div>
+                    </a>
+
+                    <div class="m-t-20 m-b-20 f-14">
+                        Yuris工作室、Yuris（徽标）都属于Yuris工作室的版权徽标
+                    </div>
+
+                    <a href="http://yurishouse.net" target="_blank">
+                        <div class="f-20">http://yurishouse.net</div>
+                    </a>
+                    <div class="f-14 m-t-5">
+                        <a href="mailto:info@yurishouse.net" target="_blank">info@yurishouse.net</a>
+                        /
+                        <a href="mailto:bainesing@nebula-soft.com" target="_blank">bainesing@nebula-soft.com</a>
+                    </div>
+
+                    <!--<div class="f-20 m-t-20">-->
+                    <!--<a href="" class="m-r-10"><i class="zmdi zmdi-google"></i></a>-->
+                    <!--<a href="" class="m-r-10"><i class="zmdi zmdi-facebook"></i></a>-->
+                    <!--<a href=""><i class="zmdi zmdi-twitter"></i></a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="footer__bottom">
+        <div class="container">
+            <span class="footer__copyright">&copy;2018 Yuris Studio AllRights Reserved.</span>
+
+            <a href="about.php">关于Yuris</a>
+            <a href="http://policy.yurishouse.net?content=sp">隐私权政策</a>
+            <a href="admin/" target="_blank">登入Yuris文库编辑部</a>
+        </div>
+
+        <div class="footer__to-top" data-rmd-action="scroll-to" data-rmd-target="html">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </div>
+    </div>
+</footer>
+
+<!--********************************旧版本IE兼容性提示*****************************************-->
+<!--[if lt IE 9]>
+<div class="ie-warning">
+    <h1>很抱歉</h1>
+    <p>您正在使用 Internet Explorer 的过旧版本，请升级您的浏览器<br/>至下列任一版本后方可访问Yuris文库。</p>
+    <div class="ie-warning__inner">
+        <ul class="ie-warning__download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="img/browsers/chrome.png" alt="">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="img/browsers/firefox.png" alt="">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="img/browsers/opera.png" alt="">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="img/browsers/safari.png" alt="">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="img/browsers/ie.png" alt="">
+                    <div>IE (New)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>为您造成不便，我们深表歉意！</p>
+</div>
+<![endif]-->
+
+<!-- Javascript -->
+
+<!-- jQuery -->
+<script src="assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Waves button ripple effects -->
+<script src="assets/js/waves.min.js"></script>
+
+<!-- Select 2 - Custom Selects -->
+<script src="assets/js/select2.full.min.js"></script>
+
+<!-- rateYo - Ratings -->
+<script src="assets/js/jquery.rateyo.js"></script>
+
+<!-- jsSocials - Social link sharing -->
+<script src="assets/js/jssocials.min.js"></script>
+
+<!-- Autosize Textarea -->
+<script src="assets/js/autosize.min.js"></script>
+
+<!-- IE9 Placeholder -->
+<!--[if IE 9 ]>
+<script src="assets/js/jquery.placeholder.min.js"></script>
+<![endif]-->
+
+<!-- Site functions and actions -->
+<script src="assets/js/app.min.js"></script>
+
+<!-- Demo only -->
+<script src="assets/js/demo.js"></script>
+</body>
+</html>
