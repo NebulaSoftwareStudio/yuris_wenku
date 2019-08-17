@@ -19,7 +19,7 @@ if (isset($_GET["cid"])) {
     $page = isset($_GET["page"]) ? $_GET["page"] : 0;
     $article_index = $page * 10;
     //获取书籍下的文章
-    $article_list = select_more_data("select * from `article` where `book` = '" . $book_info["ID"] . "' order by `time` desc limit $article_index,10");
+    $article_list = @select_more_data("select * from `article` where `book` = '" . $book_info["ID"] . "' and `publish` = 1 order by `time` desc limit $article_index,10");
     //获取额外内容
     for ($i = 0; $i < sizeof($article_list); $i++) {
         //获取所属文集信息
@@ -29,7 +29,7 @@ if (isset($_GET["cid"])) {
     }
 
     //获取评论
-    $review_list = select_more_data("select * from `review` where `book_id` = '$id' order by `time` desc limit 0,5; ");
+    $review_list = @select_more_data("select * from `review` where `book_id` = '$id' order by `time` desc limit 0,2; ");
     //获取额外内容
     for ($i = 0; $i < sizeof($review_list); $i++) {
         //获取用户信息
@@ -37,10 +37,10 @@ if (isset($_GET["cid"])) {
     }
 
     //获取热门文章
-    $hot_article = select_more_data("select * from `article` order by `view` desc limit 0,5");
+    $hot_article = select_more_data("select * from `article` where `publish` = 1 order by `view` desc limit 0,5");
 
     if (!isset($_GET["mode"]) || $_GET["mode"] != 'list') {
-        $page_title = $book_info["name"];
+        $page_title = '专题：《' . $book_info["name"] . '》 - ';
         //引入头部及菜单
         require "theme/model/head.html";
         require "theme/model/menu.html";
@@ -56,19 +56,21 @@ if (isset($_GET["cid"])) {
                     <div class="col-md-8 col-sm-7">
 
 
-                        <h1 style="margin-bottom: 20px"><?php echo $book_info["name"] ?></h1>
+                        <!--                        <h1 style="margin-bottom: 20px">-->
+                        <?php //echo $book_info["name"] ?><!--</h1>-->
 
 
                         <div class="card mortgage__item"
-                             style="background-image: url('<?php echo $book_info["cover"] ?>');  background-size: cover;  background-color: black; color:#ffffff;">
+                             style="background-image: url('<?php echo $book_info["cover"] ?>'); background-position: bottom; background-size: cover;  background-color: black; color:#ffffff;">
                             <div class="mortgage__header media" style="background-color: rgba(0, 0, 0, 0.4);">
                                 <div class="pull-left mortgage__logo"
-                                     style="background-image: url('<?php echo $book_info["cover"] ?>');  background-size: cover;  background-color: black; color:#ffffff;">
+                                     style="background-image: url('<?php echo $book_info["cover"] ?>'); background-position: bottom; background-size: cover;  background-color: black; color:#ffffff;">
                                     <div style="width: 80px;height: 80px;"></div>
                                 </div>
                                 <div class="media-body mortgage__name">
                                     <strong style="color:#ffffff"><?php echo $book_info["name"] ?></strong>
-                                    <small><?php echo $book_info["author_info"]["nick_name"] ?>&nbsp;&nbsp;著</small>
+                                    <small><?php echo $book_info["author_info"]["nick_name"] ?>
+                                        &nbsp;&nbsp;著，<?php echo ($book_info["updating"] == 1) ? '连载中' : '已完结' ?></small>
                                     <div class="rmd-rate" data-rate-value="<?php echo $book_info["star"] ?>"
                                          data-rate-readonly="true"></div>
                                     <?php echo $book_info["star"] ?>分，<?php
@@ -96,6 +98,7 @@ if (isset($_GET["cid"])) {
                                 </div>
                             </div>
                             <div class="mortgage__body" style="background-color: rgba(0, 0, 0, 0.4);">
+                                <small>（该专题创建于<?php echo date("Y年m月d日 H:i", strtotime($book_info["time"])); ?>）<br/><br/><br/></small>
                                 <?php echo $book_info["description"] ?>
                             </div>
                         </div>
@@ -116,18 +119,17 @@ if (isset($_GET["cid"])) {
                                         </div>
                                     <?php } ?>
 
-                                    <div class="card__header">
-                                        <h2 style="font-size: 25px;"><?php echo $article_list[$i]["title"] ?></h2>
-                                        <small><?php echo $article_list[$i]["author_info"]["nick_name"] ?>
-                                            于<?php echo date("Y年m月d日", strtotime($article_list[$i]["time"])); ?>
-                                            发表在《<?php echo $article_list[$i]["book_info"]["name"]; ?>》
-                                        </small>
+                                    <div class="article_header">
+                                        <h2><?php echo $article_list[$i]["title"] ?></h2>
                                     </div>
-                                    <div class="card__body">
-                                        <p style="color: #353535;"><?php echo $article_list[$i]["description"] ?></p>
-                                        <div class="blog-more">
-                                            阅读更多...
-                                        </div>
+                                    <div class="article_body">
+                                        <p><?php echo $article_list[$i]["description"] ?></p>
+                                        <button class="btn btn-sm btn-primary">阅读更多&nbsp;&nbsp;<i class="zmdi zmdi-open-in-new"></i></button>
+                                    </div>
+                                    <div class="article_info">
+                                        <p>作者：<?php echo $article_list[$i]["author_info"]["nick_name"] ?></p>
+                                        <p>发表于：<?php echo date("Y年m月d日", strtotime($article_list[$i]["time"])); ?></p>
+                                        <p>该章收录于《<?php echo $article_list[$i]["book_info"]["name"]; ?>》篇目</p>
                                     </div>
                                 </article>
                             </a>
@@ -147,7 +149,6 @@ if (isset($_GET["cid"])) {
 
                     <aside class="col-md-4 col-sm-5 hidden-xs">
 
-                        <h1 style="margin-bottom: 20px">&nbsp;</h1>
 
                         <div class="card">
                             <div class="card__header">
@@ -155,22 +156,29 @@ if (isset($_GET["cid"])) {
                                 <small>看看大家对这本书有什么评价</small>
                             </div>
                             <div class="list-group">
+                                <?php if (sizeof($review_list) > 0) { ?>
+                                    <?php for ($i = 0; $i < sizeof($review_list); $i++) { ?>
+                                        <a class="list-group-item media" href="javascript:">
+                                            <div class="pull-left">
+                                                <img src="<?php echo $review_list[$i]["user_info"]["icon"]; ?>"
+                                                     alt="<?php echo $review_list[$i]["user_info"]["nick_name"]; ?>"
+                                                     class="list-group__img img-circle" width="65" height="65">
+                                            </div>
+                                            <div class="media-body list-group__text">
+                                                <strong><?php echo $review_list[$i]["user_info"]["nick_name"]; ?></strong>
+                                                <div class="rmd-rate"
+                                                     data-rate-value="<?php echo $review_list[$i]["star"]; ?>"
+                                                     data-rate-readonly="true"></div>
+                                                <p class="list-group__text"><?php echo $review_list[$i]["content"]; ?></p>
+                                            </div>
+                                        </a>
+                                    <?php } ?>
+                                <?php } else { ?>
 
-                                <?php for ($i = 0; $i < sizeof($review_list); $i++) { ?>
-                                    <a class="list-group-item media" href="javascript:">
-                                        <div class="pull-left">
-                                            <img src="<?php echo $review_list[$i]["user_info"]["icon"]; ?>"
-                                                 alt="<?php echo $review_list[$i]["user_info"]["nick_name"]; ?>"
-                                                 class="list-group__img img-circle" width="65" height="65">
-                                        </div>
-                                        <div class="media-body list-group__text">
-                                            <strong><?php echo $review_list[$i]["user_info"]["nick_name"]; ?></strong>
-                                            <div class="rmd-rate"
-                                                 data-rate-value="<?php echo $review_list[$i]["star"]; ?>"
-                                                 data-rate-readonly="true"></div>
-                                            <p class="list-group__text"><?php echo $review_list[$i]["content"]; ?></p>
-                                        </div>
-                                    </a>
+                                    <div class="card__body">
+                                        <small class="text-muted">该作品暂时没有任何可供显示的评价</small>
+                                    </div>
+
                                 <?php } ?>
 
 
@@ -242,7 +250,7 @@ if (isset($_GET["cid"])) {
         <section class="section">
             <div class="container">
 
-                <div class="row" >
+                <div class="row">
 
                     <!-- 发表评价 -->
                     <div class="card card--dark mdc-bg-orange-300" id="review_box" style="overflow: hidden;">
@@ -329,22 +337,11 @@ if (isset($_GET["cid"])) {
     }
 
 } else {
-    ?>
-
-    <section id="main" style="background-color: #FFD54F;padding-bottom: 100px;">
-        <div class="four-zero__content" style="position: relative;">
-            <h1>404</h1>
-            <p>你似乎来到了一个神秘的地方。这个神秘的地方没有别人，只有你自己。你我都是人类，人类的本性就是孤独。</p>
-
-            <div class="four-zero__links">
-                <a href="./">文库首页</a>
-                <a href="javascript:return_previous_page()">返回上一页</a>
-            </div>
-        </div>
-    </section>
-
-
-    <?php
+    $page_title = "页面不存在 - ";
+    //引入头部及菜单
+    require "theme/model/head.html";
+    require "theme/model/menu.html";
+    require "theme/model/404_content.html";
 }
 
 require "theme/model/footer.html";

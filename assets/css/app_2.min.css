@@ -281,6 +281,7 @@
         right: 0;
         border-radius: 2px 0 2px 2px
     }
+
 }
 
 @media (max-width: 991px) {
@@ -310,6 +311,13 @@
         float: right;
         cursor: pointer
     }
+
+
+
+
+
+
+
 }
 
 .search__type .dropdown-menu > div > span, .search__type > a {
@@ -1626,7 +1634,7 @@
 
 .mortgage__name small {
     margin: 0;
-    color: #9c9c9c
+    color: #d9d9d9
 }
 
 .mortgage__name .rmd-rate {
@@ -1640,6 +1648,22 @@
 .mortgage__body .btn {
     box-shadow: none;
     margin: 25px 0 10px
+}
+
+.mortgage__body a{
+    color: #f8f8f8;
+    margin: 0 5px;
+}
+
+.mortgage__body a:hover{
+    color: #2196F3;
+}
+
+.mortgage__body a:after{
+    content: '\f1a3';
+    font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+    font-size: inherit;
+    text-rendering: auto;
 }
 
 .mortgage__info small {
@@ -1768,20 +1792,10 @@
 }
 
 .submit-property__steps > li.active:nth-child(2) ~ .submit-property__caret {
-    left: calc(20% + 10px)
+    left: calc(50% + 10px)
 }
 
-.submit-property__steps > li.active:nth-child(3) ~ .submit-property__caret {
-    left: calc(40% + 10px)
-}
 
-.submit-property__steps > li.active:nth-child(4) ~ .submit-property__caret {
-    left: calc(60% + 10px)
-}
-
-.submit-property__steps > li.active:nth-child(5) ~ .submit-property__caret {
-    left: calc(80% + 10px)
-}
 
 .submit-property__content {
     margin-top: 40px
@@ -1827,7 +1841,7 @@
     width: 100%
 }
 
-.submit-property__success > i {
+.submit-property__success > div{
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -1844,6 +1858,57 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both
 }
+
+.submit-property__info {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%
+}
+
+.submit-property__info > div{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 70px;
+    font-size: 30px;
+    background-color: #FDD835;
+    display: inline-block;
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+.submit-property__error {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%
+}
+
+.submit-property__error > div{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 70px;
+    font-size: 30px;
+    background-color: #f40000;
+    display: inline-block;
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+
 
 .submit-property__success > h2 {
     font-size: 17px;
@@ -5247,4 +5312,73 @@ html:not(.ie9) .page-loader__spinner {
 .trumbowyg-button-pane .trumbowyg-button-group:not(:empty) + .trumbowyg-button-group:before {
     background: #f1f1f1;
     height: 100%
+}
+
+
+
+
+.article_header{
+    padding: 40px 20px 0 20px;
+}
+
+.article_header h2{
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.article_body{
+    padding: 5px 20px;
+    margin: 15px 0;
+    width: 70%;
+    float: right;
+    color: #353535;
+    font-size: 13pt;
+    font-style:italic;
+    border-left: 4px solid #353535;
+}
+
+
+.article_info{
+    padding: 20px;
+    float: right;
+    width: 30%;
+    color: #888888;
+}
+
+.article_info p{
+    margin: 5px;
+}
+
+
+@media (max-width: 992px) {
+    .article_body{
+        padding: 5px 20px;
+        margin: 15px auto;
+        width: 95%;
+        color: #353535;
+        font-size: 13pt;
+        font-style:italic;
+        border-left: 4px solid #353535;
+    }
+
+
+    .article_info{
+        padding: 20px;
+        float: right;
+        width: 100%;
+        color: #888888;
+    }
+
+    .article_info p{
+        margin: 5px;
+        float: left;
+    }
+
+    .article_info p:after{
+        content: "\002f";
+        display: inline-block;
+        opacity: 0.7;
+        padding: 0 0.538461538em;
+    }
 }

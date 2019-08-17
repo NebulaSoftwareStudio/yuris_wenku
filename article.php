@@ -43,7 +43,8 @@ if (isset($_GET["id"])) {
 
                                 <?php if ($article_info["image"] != '') { ?>
                                     <div class="card__img">
-                                        <img src="<?php echo $article_info["image"]; ?>" alt="<?php echo $article_info["title"]; ?>"/>
+                                        <img src="<?php echo $article_info["image"]; ?>"
+                                             alt="<?php echo $article_info["title"]; ?>"/>
                                     </div>
                                 <?php } ?>
                                 <div class="card__body">
@@ -72,11 +73,20 @@ if (isset($_GET["id"])) {
                                              alt="<?php echo $author_info["nick_name"]; ?>"/>
                                     </div>
                                     <div class="blog__arthur-contents">
-                                        <h2>本文作者：<?php echo $author_info["nick_name"]; ?></h2>
+                                        <h2>
+                                            本文作者：<?php echo $author_info["nick_name"]; ?><?php if ($author_info["identification"] == 1) { ?>
+                                                <i class="zmdi zmdi-check-circle text-success"></i>
+                                            <?php } ?></h2>
                                         <p>「<?php echo $author_info["sign"]; ?>」</p>
                                         <div class="blog__arthur-social">
-                                            <a href="author.php?id=<?php echo $author_info["ID"]; ?>" title="作者在Yuris文库的主页" class="mdc-bg-indigo-500"><i class="zmdi zmdi-home"></i></a>
-                                            <a href="https://twitter.com/<?php echo $author_info["twitter"]?>" target="_blank" title="关注twitter（您所在的地区可能无法访问此链接）" class="mdc-bg-cyan-500"><i class="zmdi zmdi-twitter"></i></a>
+                                            <a href="author.php?id=<?php echo $author_info["ID"]; ?>"
+                                               title="作者在Yuris文库的主页" class="mdc-bg-indigo-500"><i
+                                                        class="zmdi zmdi-home"></i></a>
+                                            <?php if ($author_info["twitter"] !== '') { ?>
+                                                <a href="https://twitter.com/<?php echo $author_info["twitter"] ?>"
+                                                   target="_blank" title="关注twitter（您所在的地区可能无法访问此链接）"
+                                                   class="mdc-bg-cyan-500"><i class="zmdi zmdi-twitter"></i></a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +146,8 @@ if (isset($_GET["id"])) {
                                            class="list-group-item media">
                                             <div class="pull-left" style="max-height: 45px;overflow: hidden;">
                                                 <img src="<?php echo $hot_article[$i]["image"] ?>"
-                                                     alt="<?php echo $hot_article[$i]["title"] ?>" class="list-group__img"
+                                                     alt="<?php echo $hot_article[$i]["title"] ?>"
+                                                     class="list-group__img"
                                                      width="65">
                                             </div>
                                             <div class="media-body list-group__text">
@@ -155,12 +166,12 @@ if (isset($_GET["id"])) {
                                 let headers = document.getElementsByTagName("h3");
                                 let html_string = '';
                                 //console.log(headers);
-                                if(headers.length>0){
-                                    for(let i=0;i<headers.length;i++){
+                                if (headers.length > 0) {
+                                    for (let i = 0; i < headers.length; i++) {
                                         //对象id重置
-                                        headers[i]["id"] = "header_"+i;
+                                        headers[i]["id"] = "header_" + i;
                                         //拼接html字符串
-                                        html_string += '<a href="#header_'+i+'" class="tags-list__item" title="'+headers[i]["innerText"]+'">'+headers[i]["innerText"]+'</a>'
+                                        html_string += '<a href="#header_' + i + '" class="tags-list__item" title="' + headers[i]["innerText"] + '">' + headers[i]["innerText"] + '</a>'
                                     }
                                     document.getElementById("cag_index").innerHTML = html_string;
                                 }
@@ -191,20 +202,7 @@ if (isset($_GET["id"])) {
         //引入头部及菜单
         require "theme/model/head.html";
         require "theme/model/menu.html";
-
-        ?>
-        <section id="main" style="background-color: #FFD54F;padding-bottom: 100px;">
-            <div class="four-zero__content" style="position: relative;">
-                <h1>404</h1>
-                <p>你似乎来到了一个神秘的地方。这个神秘的地方没有别人，只有你自己。你我都是人类，人类的本性就是孤独。</p>
-
-                <div class="four-zero__links">
-                    <a href="./">文库首页</a>
-                    <a href="javascript:return_previous_page()">返回上一页</a>
-                </div>
-            </div>
-        </section>
-        <?php
+        require "theme/model/404_content.html";
         require "theme/model/footer.html";
     }
 } else {
@@ -213,20 +211,7 @@ if (isset($_GET["id"])) {
     //引入头部及菜单
     require "theme/model/head.html";
     require "theme/model/menu.html";
-
-    ?>
-    <section id="main" style="background-color: #FFD54F;padding-bottom: 100px;">
-        <div class="four-zero__content" style="position: relative;">
-            <h1>404</h1>
-            <p>你似乎来到了一个神秘的地方。这个神秘的地方没有别人，只有你自己。你我都是人类，人类的本性就是孤独。</p>
-
-            <div class="four-zero__links">
-                <a href="./">文库首页</a>
-                <a href="javascript:return_previous_page()">返回上一页</a>
-            </div>
-        </div>
-    </section>
-    <?php
+    require "theme/model/404_content.html";
     require "theme/model/footer.html";
 }
 

@@ -14,13 +14,15 @@ require "theme/model/menu.html";
 //require "theme/model/theme_demo.html";
 
 //获取专题推荐
-$topic_list = select_more_data("select * from `topic` order by `time` desc limit 0,3");
+$topic_list = select_more_data("select * from `book_list` where `topic`=1 order by `time` desc limit 0,3");
 //获取额外内容
 for ($i = 0; $i < sizeof($topic_list); $i++) {
     //获取书籍信息
-    $topic_list[$i]["book_info"] = select_data("select * from `book_list` where `ID` = '" . $topic_list[$i]["book_id"] . "'");
+    $topic_list[$i]["book_info"] = select_data("select * from `book_list` where `ID` = '" . $topic_list[$i]["ID"] . "'");
     //获取作者信息
-    $topic_list[$i]["author_info"] = select_data("select * from `user_account` where `ID` = '" . $topic_list[$i]["author_id"] . "'");
+    $topic_list[$i]["author_info"] = select_data("select * from `user_account` where `ID` = '" . $topic_list[$i]["author"] . "'");
+    //获取该文集的最新更新文章的更新时间
+    $topic_list[$i]["update_time"] = select_data("select `time` from `article` where `book` = '" . $topic_list[$i]["ID"] . "' and `publish` = 1 order by `time` desc")["time"];
 }
 
 //计算页数
@@ -28,7 +30,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 0;
 $article_index = $page * 10;
 
 //获取最新文章
-$article_list = select_more_data("select * from `article` order by `time` desc limit $article_index,10");
+$article_list = select_more_data("select * from `article` where `publish` = 1 order by `time` desc limit $article_index,10");
 //获取额外内容
 for ($i = 0; $i < sizeof($article_list); $i++) {
     //获取所属文集信息
@@ -36,9 +38,15 @@ for ($i = 0; $i < sizeof($article_list); $i++) {
     //获取作者信息
     $article_list[$i]["author_info"] = select_data("select * from `user_account` where `ID` = '" . $article_list[$i]["author"] . "'");
 }
+//获取文库文章总数
+$article_count = select_data("select count(*) as `count` from `article` where `publish` = 1")["count"];
+$book_count = select_data("select count(*) as `count` from `book_list`")["count"];
+
+//计算页码
+$max_page = $article_count < 10 ? 0 : (int)($article_count / 10);
 
 //获取热门文章
-$hot_article = select_more_data("select * from `article` order by `view` desc limit 0,5");
+$hot_article = select_more_data("select * from `article` where `publish` = 1 order by `view` desc limit 0,5");
 
 
 ?>
@@ -62,6 +70,7 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
                 /*background: #3F51B5;*/
                 margin: -40px auto -40px auto;
             }
+
             .swiper-slide {
                 text-align: center;
                 font-size: 18px;
@@ -81,24 +90,39 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
                 align-items: center;
                 overflow: hidden;
             }
+
             .swiper-slide a img {
                 height: 400px;
             }
-            @media (max-width: 991px){
+
+            @media (max-width: 991px) {
                 .swiper-container {
                     width: 100%;
                     height: 200px;
                     /*background: #3F51B5;*/
                     margin: -40px auto -10px auto;
                 }
+
                 .swiper-slide a img {
                     height: 200px;
                 }
             }
 
+            @keyframes zoom1 {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
         </style>
         <div class="index_banner" style="position: relative;">
-            <div id="banner" class="swiper-container " >
+            <div id="banner" class="swiper-container ">
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
@@ -170,12 +194,12 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
 
                 <div class="col-sm-4 col-md-4">
                     <div class="listings-grid__item">
-                        <a href="topic.php?cid=<?php echo $topic_list[$i]["book_id"]; ?>">
+                        <a href="topic.php?cid=<?php echo $topic_list[$i]["ID"]; ?>">
                             <div class="listings-grid__main">
-                                <img src="<?php echo $topic_list[$i]["image"]; ?>"
+                                <img src="<?php echo $topic_list[$i]["cover"]; ?>"
                                      alt="<?php echo $topic_list[$i]["name"]; ?>">
                                 <div class="listings-grid__price">
-                                    推荐提交于<?php echo date("Y年m月d日", strtotime($topic_list[$i]["time"])); ?></div>
+                                    最近更新于<?php echo date("Y年m月d日", strtotime($topic_list[$i]["update_time"])); ?></div>
                             </div>
 
                             <div class="listings-grid__body">
@@ -230,18 +254,17 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
                                 </div>
                             <?php } ?>
 
-                            <div class="card__header">
-                                <h2 style="font-size: 25px;"><?php echo $article_list[$i]["title"] ?></h2>
-                                <small><?php echo $article_list[$i]["author_info"]["nick_name"] ?>
-                                    于<?php echo date("Y年m月d日", strtotime($article_list[$i]["time"])); ?>
-                                    发表在《<?php echo $article_list[$i]["book_info"]["name"]; ?>》
-                                </small>
+                            <div class="article_header">
+                                <h2><?php echo $article_list[$i]["title"] ?></h2>
                             </div>
-                            <div class="card__body">
-                                <p style="color: #353535;"><?php echo $article_list[$i]["description"] ?></p>
-                                <div class="blog-more">
-                                    阅读更多...
-                                </div>
+                            <div class="article_body">
+                                <p><?php echo $article_list[$i]["description"] ?></p>
+                                <button class="btn btn-sm btn-primary">阅读更多&nbsp;&nbsp;<i class="zmdi zmdi-open-in-new"></i></button>
+                            </div>
+                            <div class="article_info">
+                                <p>作者：<?php echo $article_list[$i]["author_info"]["nick_name"] ?></p>
+                                <p>发表于：<?php echo date("Y年m月d日", strtotime($article_list[$i]["time"])); ?></p>
+                                <p>该章收录于《<?php echo $article_list[$i]["book_info"]["name"]; ?>》篇目</p>
                             </div>
                         </article>
                     </a>
@@ -251,15 +274,40 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
 
                 <nav class="text-center">
                     <ul class="pagination">
-                        <li><a>始</a></li>
-                        <li><a><i class="zmdi zmdi-chevron-left"></i></a></li>
-                        <li class='active'><a href="?page=1">1</a></li>
-                        <li><a href="?page=2">2</a></li>
-                        <li class="disabled"><a>···</a></li>
-                        <li><a href="?page=4">5</a></li>
-                        <li><a href="?page=2" aria-label="Previous"><i class="zmdi zmdi-chevron-right"></i></a>
-                        </li>
-                        <li><a href="?page=4">终</a></li>
+                        <li><a href="./">始</a></li>
+                        <?php if ($page > 0) { ?>
+                            <li>
+                                <a href="?page=<?php echo $page-1; ?>" aria-label="Previous">
+                                    <i class="zmdi zmdi-chevron-right"></i>
+                                </a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="disabled">
+                                <a aria-label="Previous">
+                                    <i class="zmdi zmdi-chevron-left"></i>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php for ($i = 0; $i < $max_page + 1; $i++) { ?>
+                            <li class='<?php echo ($page == $i) ? "active" : "" ?>'>
+                                <a href="?page=<?php echo $i; ?>"><?php echo $i + 1; ?></a>
+                            </li>
+                        <?php } ?>
+                        <!--                        <li class="disabled"><a>···</a></li>-->
+                        <?php if ($page + 1 <= $max_page) { ?>
+                            <li>
+                                <a href="?page=<?php echo $page+1; ?>" aria-label="Previous">
+                                    <i class="zmdi zmdi-chevron-right"></i>
+                                </a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="disabled">
+                                <a aria-label="Previous">
+                                    <i class="zmdi zmdi-chevron-right"></i>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <li><a href="?page=<?php echo $max_page; ?>">终</a></li>
                     </ul>
                 </nav>
 
@@ -269,10 +317,22 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
 
             <!--********************************右侧栏*****************************************-->
             <aside class="col-md-4 col-sm-5 hidden-xs">
-
                 <div class="container" style="margin-bottom: 20px;width: 100%;">
                     <h2>&nbsp;</h2>
                 </div>
+
+                <?php if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "on") { ?>
+                    <div class="card subscribe mdc-bg-green-600 text-left">
+                        <h2 class="text-left">您目前正是用HTTPS之SSL加密下访问Yuris文库。</h2>
+                        <small class="text-left">如非必要，请尽量使用HTTPS加密方式访问Yuris文库。使用未加密的方式进行访问将增加页面被篡改的可能。</small>
+                    </div>
+                <?php } else { ?>
+                    <div class="card subscribe mdc-bg-red-600">
+                        <h2 class="text-left">您未使用HTTPS方式访问Yuris文库</h2>
+                        <small class="text-left">如非必要，请尽量使用HTTPS加密方式访问Yuris文库。使用未加密的方式进行访问将增加页面被篡改的可能。</small>
+                    </div>
+                <?php } ?>
+
 
                 <!--本分类中的栏目-->
                 <div class="card tags-list">
@@ -284,11 +344,23 @@ $hot_article = select_more_data("select * from `article` order by `view` desc li
                         <!--动态输出-->
                         <a href="list.php?cid=1" class="tags-list__item" title="小说作品"> # 小说作品</a>
                         <a href="list.php?cid=2" class="tags-list__item" title="文档"> # 文档</a>
-                        <a href="list.php?cid=4" class="tags-list__item" title="Yuris月刊"> # Yuris月刊</a>
+                        <a href="list.php?cid=4" class="tags-list__item" title="Yuris月刊"> # Yuris季刊</a>
                         <a href="list.php?cid=21" class="tags-list__item" title="公告"> # 公告</a>
                         <a href="list.php?cid=25" class="tags-list__item" title="专题"> # 专题</a>
                         <a href="list.php?cid=32" class="tags-list__item" title="讨论版"> # 讨论版</a>
                         <!--动态输出结束-->
+                    </div>
+                </div>
+
+                <!--文库统计-->
+                <div class="card tags-list">
+                    <div class="card__header">
+                        <h2>文库统计</h2>
+                        <small>文库发表内容总计</small>
+                    </div>
+                    <div class="card__body">
+                        <div>文章发表总计：<?php echo $article_count; ?>篇目</div>
+                        <div>书籍创建总计：<?php echo $book_count; ?>条目</div>
                     </div>
                 </div>
 
