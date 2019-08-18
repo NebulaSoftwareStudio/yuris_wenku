@@ -7,6 +7,10 @@
 
 //获取该用户发表的新文章（前4篇）
 $previous_articles = @select_more_data("select * from `article` where `author` = '".$user_info["ID"]."' order by `time` desc limit 0,4");
+for ($i = 0; $i < sizeof($previous_articles); $i++) {
+    //获取所属书籍信息
+    $previous_articles[$i]["book_info"] = select_data("select * from `book_list` where `ID` = '" . $previous_articles[$i]["book"] . "'");
+}
 
 ?>
 
@@ -49,7 +53,8 @@ $previous_articles = @select_more_data("select * from `article` where `author` =
                             <p class="text-white">文库运作系统正在稳步升级当中，届时可能会出现界面上的些许变化，请多多留意我们的公示板。在使用过程中出现任何问题，欢迎通过客服或工单系统提交问题。</p>
                             <p class="text-white">感谢您使用 Yuris 文库进行创作！</p>
 
-                            <a href="#" class="btn btn-purple">了解 Kitoko 版本 <i class="mdi mdi-open-in-new"></i></a>
+                            <a href="https://github.com/NebulaSoftwareStudio/yuris_wenku/blob/master/README.md"
+                               target="_blank" class="btn btn-purple">了解 Kitoko 版本 <i class="mdi mdi-open-in-new"></i></a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +71,7 @@ $previous_articles = @select_more_data("select * from `article` where `author` =
                                     <th>标题</th>
                                     <th>发表日期</th>
                                     <th>阅读数</th>
-                                    <th>Payouts</th>
+                                    <th>所属书籍</th>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
@@ -88,7 +93,7 @@ $previous_articles = @select_more_data("select * from `article` where `author` =
                                     </td>
 
                                     <td>
-                                        $815.89
+                                        <a href="javascript:"> <?php echo $previous_articles[$i]["book_info"]["name"]; ?></a>
                                     </td>
 
                                     <td>
@@ -100,7 +105,9 @@ $previous_articles = @select_more_data("select * from `article` where `author` =
                                     </td>
 
                                     <td>
-                                        <a href="?pid=3&mode=edit&article_id=<?php echo $previous_articles[$i]["ID"]; ?>" class="btn btn-xs btn-secondary"><i class="mdi mdi-pencil"></i></a>
+                                        <a href="?pid=3&mode=edit&article_id=<?php echo $previous_articles[$i]["ID"]; ?>"
+                                           class="btn btn-xs btn-secondary" data-toggle="tooltip" data-original-title="编辑文章">
+                                            <i class="mdi mdi-pencil"></i></a>
                                     </td>
                                 </tr>
 

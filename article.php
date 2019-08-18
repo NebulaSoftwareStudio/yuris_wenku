@@ -20,6 +20,19 @@ if (isset($_GET["id"])) {
         $author_info = select_data("select * from `user_account` where `ID` = '" . $article_info["author"] . "'");
         $book_info = select_data("select * from `book_list` where `ID` = '" . $article_info["book"] . "'");
         $page_title = $article_info["title"] . ' - ';
+
+        //统计文章字数
+        $article_content_no_tag = strip_tags($article_info["content"]);
+        $article_content_length = mb_strlen($article_content_no_tag, 'UTF-8');
+        //大致计算阅读时间。研究统计大概每分钟能读400字左右
+        $article_read_time = round($article_content_length/400,2);
+
+        //记录文章阅读次数
+
+
+
+
+
         //检测用户选择的是那种展示方式。如果cookie存储的新版展示方式，就按新版展示
         if (isset($_COOKIE["display_mode"]) && $_COOKIE["display_mode"] == 'kitoko') {
             //展示预览版模板
@@ -54,6 +67,8 @@ if (isset($_GET["id"])) {
                                         于<?php echo date("Y年m月d日 H:i:s", strtotime($article_info["time"])) ?>发表在<a
                                                 href="topic.php?cid=<?php echo $book_info["ID"]; ?>"><?php echo $book_info["name"]; ?></a>
                                     </small>
+                                    <br/>
+                                    <small>文章总计<?php echo $article_content_length; ?>字，阅读全文大概需要<?php echo $article_read_time; ?>分钟。</small>
                                     <hr/>
 
                                     <?php echo $article_info["content"]; ?>
