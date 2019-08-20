@@ -13,7 +13,7 @@ $user_info = $_SESSION["user_info"];
 $id = $_POST["id"];
 $article_title = clean_input_string($_POST["title"]);
 $article_description = clean_input_string($_POST["description"]);
-$article_content = clean_input_string($_POST["content"]);
+$article_content = addslashes($_POST["content"]);
 $book_id = $_POST["book_id"];
 $book_info = select_data("select * from `book_list` where `ID` = '$book_id'");
 $article_image = $_POST["image"];
@@ -24,9 +24,10 @@ $echo_array = [];
 //检查是在原文章基础上更新还是新建文章
 if($id == ''){
     //新建文章
+    //注：默认审核功能需要后期更新后修改下属SQL语句的 publish 字段
     $sql = "INSERT INTO `article` 
 (`ID`, `title`, `description`, `image`, `time`, `author`, `content`, `classify`, `book`, `view`, `publish`) VALUES 
-(NULL, '$article_title', '$article_description', '$article_image', '$time', '".$user_info["ID"]."', '$article_content', '".$book_info["classify"]."', '$book_id', '0', '0')";
+(NULL, '$article_title', '$article_description', '$article_image', '$time', '".$user_info["ID"]."', '$article_content', '".$book_info["classify"]."', '$book_id', '0', '1')";
     if(insert_data($sql)){
         $echo_array["status"] = true;
         $echo_array["info"] = '新建文章成功';

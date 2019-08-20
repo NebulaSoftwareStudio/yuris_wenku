@@ -95,6 +95,7 @@ else{
 
                                     <input type="file" id="select_file"
                                            style="position: fixed;z-index: -9999;left: -99999px;top: -99999px;"
+                                           accept="image/jpeg"
                                            onchange="upload_article_image()"/>
 
 

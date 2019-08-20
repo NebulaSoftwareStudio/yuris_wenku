@@ -86,7 +86,7 @@ require "theme/model/menu.html";
 
                 <div class="card__body">
                     <div class="card__sub" id="description">
-                        <h4>关于 日向花和</h4>
+                        <h4>关于 <?php echo $author_info["nick_name"]; ?></h4>
 
                         <?php echo $author_info["description"]; ?>
                     </div>

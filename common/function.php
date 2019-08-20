@@ -87,7 +87,7 @@ function delete_data($sql)
  */
 function clean_input_string($string)
 {
-    $keywords = ["and", "select", "update", "chr", "delete", "from", "insert", "mid", "master", "set", "=", "like", "or", ";", "'", '"'];
+    $keywords = ["script","alert","and", "select", "update", "chr", "delete", "from", "insert", "mid", "master", "set", "=", "like", "or", ";", "'", '"'];
     //字符串替换
     for ($i = 0; $i < sizeof($keywords); $i++) {
         $string = str_replace($keywords[$i], "*", $string);
