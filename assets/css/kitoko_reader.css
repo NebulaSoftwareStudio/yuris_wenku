@@ -1,0 +1,233 @@
+@font-face{
+    font-family: 'SOURCE SONG';
+    src: url('../fonts/SourceHanSerifCN-Bold.otf');
+    /*src:url('../fonts/SourceHanSerifCN-Bold.otf') ,*/
+    /*url('../fonts/SourceHanSerifCN-Heavy.otf'),*/
+    /*url('../fonts/SourceHanSerifCN-Light.otf');*/
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SOURCE SONG';
+    color: #353535;
+}
+
+.main_content{
+    height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 40px;
+    writing-mode: vertical-rl;/*从左向右 从右向左是 writing-mode: vertical-rl;*/
+    writing-mode: tb-rl;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
+}
+
+.main_content h1{
+    letter-spacing: 10px;
+}
+
+.main_content .info_box small,
+.main_content .info_box a{
+    letter-spacing: 5px;
+    color: #d9d9d9;
+}
+
+.main_content .info_box a:hover{
+    color:#353535
+}
+
+.main_content .info_box .hr{
+    width: 3px;
+    height: 300px;
+    background: #888888;
+    margin: 0 20px;
+}
+
+.main_content .article_content{
+    width: 100%;
+}
+
+.main_content .article_content p ,
+.main_content .article_content div{
+    line-height: 200%;
+    letter-spacing: 5px;
+    margin: 0 0 0 50px;
+    font-weight: lighter;
+    color: #888888;
+}
+
+.main_content .article_content blockquote{
+    border-top: 5px solid #888888;
+    background: #d9d9d9;
+    padding: 20px;
+    color: #888888;
+    line-height: 230%;
+    letter-spacing: 5px;
+}
+
+.main_content::-webkit-scrollbar {
+    display: none !important
+}
+
+
+
+
+#scroll_to_start{
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    z-index: 99;
+    left: 40px;
+    bottom: 40px;
+    background: #888888;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#scroll_to_start i{
+    color: #ffffff;
+}
+
+#pre_loader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    background: #888888;
+    left: 0;
+    top: 0;
+}
+
+#pre_loader .content{
+    width: 100px;
+    text-align: center;
+    margin: 50vh auto;
+}
+
+
+#pre_loader i{
+    color: #ffffff;
+    font-size: 20pt;
+    margin-bottom: 10px;
+}
+
+
+.hide_content{
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+.show_content{
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+
+
+#bottom_menu{
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    z-index: 100;
+    background: #888888;
+}
+
+#top_menu{
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    z-index: 100;
+    background: #888888;
+}
+
+.bottom_menu_show{
+    bottom: 0;
+    transition: bottom 200ms ease-in-out;
+}
+.bottom_menu_hide{
+    bottom: -200px;
+    transition: bottom 200ms ease-in-out;
+}
+
+.top_menu_show{
+    top: 0;
+    transition: top 200ms ease-in-out;
+}
+.top_menu_hide{
+    top: -200px;
+    transition: top 200ms ease-in-out;
+}
+
+
+#top_menu i,
+#bottom_menu i{
+    font-size: 20pt;
+    margin: 0 10px;
+    color: #ffffff;
+    line-height: 100px;
+    cursor: pointer;
+}
+
+#bottom_menu .content{
+    width: 90%;
+    max-width:1000px;
+    margin: 0 auto;
+}
+
+#bottom_menu .content .progress{
+    width: 80%;
+    height: 100px;
+    background: rgba(0,0,0,0);
+    margin: 0 auto;
+    position: relative;
+}
+
+#bottom_menu .content .progress .progress_bar{
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.5);
+    top:48px;
+    position: absolute;
+    z-index: 4;
+    cursor: pointer;
+}
+
+#bottom_menu .content .progress .progressed_bar{
+    width: 0;
+    height: 4px;
+    background: rgba(255,255,255,1);
+    top: 48px;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    transition: width 200ms ease-in-out;
+}
+
+#bottom_menu .content .progress .control_dot{
+    width: 10px;
+    height: 10px;
+    top: 45px;
+    right: 0;
+    transform: translateX(50%);
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+    transition: right 200ms ease-in-out;
+}
+
+
+.float_left{
+    float: left;
+}
+.float_right{
+    float: right;
+}
+.float_center{
+    margin: 0 auto;
+}

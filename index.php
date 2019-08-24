@@ -323,7 +323,7 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
 
                 <?php if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "on") { ?>
                     <div class="card subscribe mdc-bg-green-600 text-left">
-                        <h2 class="text-left">您目前正是用HTTPS之SSL加密下访问Yuris文库。</h2>
+                        <h2 class="text-left">您目前正使用HTTPS加密方式访问Yuris文库</h2>
                         <small class="text-left">如非必要，请尽量使用HTTPS加密方式访问Yuris文库。使用未加密的方式进行访问将增加页面被篡改的可能。</small>
                     </div>
                 <?php } else { ?>
@@ -333,24 +333,6 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
                     </div>
                 <?php } ?>
 
-
-                <!--本分类中的栏目-->
-                <div class="card tags-list">
-                    <div class="card__header">
-                        <h2>本分类中的栏目</h2>
-                        <small>本分类有以下几个栏目</small>
-                    </div>
-                    <div class="card__body">
-                        <!--动态输出-->
-                        <a href="list.php?cid=1" class="tags-list__item" title="小说作品"> # 小说作品</a>
-                        <a href="list.php?cid=2" class="tags-list__item" title="文档"> # 文档</a>
-                        <a href="list.php?cid=4" class="tags-list__item" title="Yuris月刊"> # Yuris季刊</a>
-                        <a href="list.php?cid=21" class="tags-list__item" title="公告"> # 公告</a>
-                        <a href="list.php?cid=25" class="tags-list__item" title="专题"> # 专题</a>
-                        <a href="list.php?cid=32" class="tags-list__item" title="讨论版"> # 讨论版</a>
-                        <!--动态输出结束-->
-                    </div>
-                </div>
 
                 <!--文库统计-->
                 <div class="card tags-list">

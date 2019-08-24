@@ -33,9 +33,15 @@ if (isset($_GET["id"])) {
 
 
 
-        //检测用户选择的是那种展示方式。如果cookie存储的新版展示方式，就按新版展示
+        //检测用户选择的是哪种展示方式。如果cookie存储的新版展示方式，就按新版展示
         if (isset($_COOKIE["display_mode"]) && $_COOKIE["display_mode"] == 'kitoko') {
+            //内容替换
+            $article_info["content"] = str_replace("‘","「 ",$article_info["content"]);
+            $article_info["content"] = str_replace("’"," 」",$article_info["content"]);
+            $article_info["content"] = str_replace("“"," 『",$article_info["content"]);
+            $article_info["content"] = str_replace("”"," 』",$article_info["content"]);
             //展示预览版模板
+            require "theme/model/kitoko_reader.php";
         } else {
             //展示默认模板
 
@@ -139,13 +145,7 @@ if (isset($_GET["id"])) {
                                     <h2>目录</h2>
                                     <small>页内章节目录</small>
                                 </div>
-                                <div class="card__body" id="cag_index">
-
-                                    <a href="list.php?cid=29" class="tags-list__item" title="一">一</a>
-                                    <a href="list.php?cid=30" class="tags-list__item" title="二">二</a>
-                                    <a href="list.php?cid=31" class="tags-list__item" title="三">三</a>
-
-                                </div>
+                                <div class="card__body" id="cag_index"></div>
                             </div>
 
 
@@ -178,7 +178,7 @@ if (isset($_GET["id"])) {
                             </div>
 
                             <script>
-                                let headers = document.getElementsByTagName("h3");
+                                let headers = document.getElementsByTagName("h1","h2","h3","h4","h5","h6");
                                 let html_string = '';
                                 //console.log(headers);
                                 if (headers.length > 0) {

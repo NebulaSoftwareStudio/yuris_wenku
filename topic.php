@@ -150,6 +150,44 @@ if (isset($_GET["cid"])) {
                     <aside class="col-md-4 col-sm-5 hidden-xs">
 
 
+                        <div class="card" style="">
+
+
+                            <div class="list-group-item media" style="border-top: none;padding: 20px; ">
+                                <div class="pull-left">
+                                    <img src="<?php echo $book_info["author_info"]["icon"]; ?>" class="list-group__img img-circle" width="50" height="50" alt="">
+                                </div>
+                                <div class="media-body list-group__text">
+                                    <h4><?php echo $book_info["author_info"]["nick_name"]; ?><?php if ($book_info["author_info"]["identification"] == 1) { ?>
+                                            <i class="zmdi zmdi-check-circle text-success"></i>
+                                        <?php } ?></h4>
+                                    <small>
+
+                                        <?php if ($book_info["author_info"]["pro"] == 1) { ?>
+                                            <span class="label label-warning" style="cursor: pointer"
+                                                  data-toggle="tooltip" data-placement="top" data-original-title="签约作者"
+                                                  title="文库编辑部签约作者">签约作者</span>
+                                        <?php } ?>
+
+                                        <?php if ($book_info["author_info"]["identification"] == 1) { ?>
+                                            <span class="label label-success" style="cursor: pointer"
+                                                  data-toggle="tooltip" data-placement="top" data-original-title="文库编辑部认证用户"
+                                                  title="文库编辑部认证用户">认证用户</span>
+                                        <?php } ?>
+
+                                    </small>
+                                    <p class="m-t-15"><?php echo $book_info["author_info"]["sign"]; ?></p>
+
+                                </div>
+                            </div>
+
+                            <div class="list-group">
+                                <a href="author.php?id=<?php echo $book_info["author_info"]["ID"]; ?>"
+                                   class="view-more">查看作者主页</a>
+                            </div>
+                        </div>
+
+
                         <div class="card">
                             <div class="card__header">
                                 <h2>书籍评论</h2>
