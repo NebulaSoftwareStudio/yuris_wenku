@@ -35,7 +35,7 @@ require "theme/model/menu.html";
                             <small>请登录您的Yuris文库编辑部账户以继续您的操作</small>
                         </div>
 
-                        <form class="card__body text-left">
+                        <div class="card__body text-left">
 
 
                             <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;">
@@ -51,9 +51,10 @@ require "theme/model/menu.html";
                             </div>
 
                             <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;min-height:50px">
-                                <img id="captcha_image" src="common/captcha.php?time=<?php echo time(); ?>"
+                                <img id="login_captcha_image" src="common/captcha.php?time=<?php echo time(); ?>"
                                      onclick="change_captcha()" style="float: right;width: 25%;display: block;"/>
-                                <input type="text" class="form-control" id="login_captcha" style="width: 60%;float: left;">
+                                <input type="text" class="form-control" id="login_captcha"
+                                       style="width: 60%;float: left;">
                                 <i class="form-group__bar" style="width: 60%;float: left;"></i>
                                 <label style="width: 60%;float: left;">验证码</label>
 
@@ -64,7 +65,7 @@ require "theme/model/menu.html";
                                class="btn btn--circle btn-primary submit-property__button" aria-expanded="true">
                                 <i class="zmdi zmdi-long-arrow-right"></i>
                             </a>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -75,46 +76,57 @@ require "theme/model/menu.html";
                             <small>填写并提交下方的表单可加入Yuris文库编辑部进行创作</small>
                         </div>
 
-                        <form class="card__body">
-                            <div class="form-group form-group--float form-group--float-center">
-                                <input type="text" class="form-control text-center">
+                        <div class="card__body text-left">
+
+
+                            <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;">
+                                <input type="text" class="form-control" id="regist_user_name">
                                 <i class="form-group__bar"></i>
-                                <label>Full Name</label>
+                                <label>用户名</label>
                             </div>
 
-                            <div class="form-group form-group--float form-group--float-center">
-                                <input type="text" class="form-control text-center">
+                            <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;">
+                                <input type="password" class="form-control" id="regist_password">
                                 <i class="form-group__bar"></i>
-                                <label>Organization Name (Opt.)</label>
+                                <label>密码</label>
                             </div>
 
-                            <div class="form-group form-group--float form-group--float-center m-b-5">
-                                <input type="text" class="form-control text-center">
+                            <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;">
+                                <input type="password" class="form-control" id="regist_re_password">
                                 <i class="form-group__bar"></i>
-                                <label>Email Address</label>
+                                <label>重复密码</label>
                             </div>
 
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        <i class="input-helper"></i>
-                                        Hide Email Address on listing
-                                    </label>
-                                </div>
-                            </div>
 
-                            <div class="form-group form-group--float form-group--float-center">
-                                <input type="text" class="form-control text-center">
+                            <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;">
+                                <input type="email" class="form-control" id="regist_email">
                                 <i class="form-group__bar"></i>
-                                <label>Contact Number</label>
+                                <label>电子邮件地址</label>
                             </div>
 
-                            <a href="#submit-property-3" data-toggle="tab"
-                               class="btn btn--circle btn-primary submit-property__button" aria-expanded="false">
+                            <div class="form-group form-group--float m-b-5" style="margin-bottom: 30px;min-height:50px">
+                                <img id="regist_captcha_image" class="captcha_image" src="common/captcha.php?time=<?php echo time(); ?>"
+                                     onclick="change_captcha()" style="float: right;width: 25%;display: block;"/>
+                                <input type="text" class="form-control" id="regist_captcha"
+                                       style="width: 60%;float: left;">
+                                <i class="form-group__bar" style="width: 60%;float: left;"></i>
+                                <label style="width: 60%;float: left;">验证码</label>
+
+                            </div>
+
+                            <p>
+                                <small><span style="vertical-align: inherit;">通过注册Yuris文库，即表示您同意我们的</span>
+                                    <a href="about.php?mode=policy&name=%E9%9A%90%E7%A7%81%E6%9D%83%E6%94%BF%E7%AD%96"><span style="vertical-align: inherit;">条款和条件</span></a>
+                                    <span
+                                            style="vertical-align: inherit;">。电子邮件地址是 Yuris 文库联系您（包括您找回密码等操作）的唯一凭据。根据我们的上述条款，我们不会将电邮地址用于推送广告或提供给合作伙伴。请仔细确认谨防填写错误。</span></small>
+                            </p>
+
+
+                            <a href="#submit-property-3" onclick="regist_in_pages()" data-toggle="tab"
+                               class="btn btn--circle btn-primary submit-property__button" aria-expanded="true">
                                 <i class="zmdi zmdi-long-arrow-right"></i>
                             </a>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

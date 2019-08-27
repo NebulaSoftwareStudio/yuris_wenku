@@ -47,13 +47,15 @@ for ($i = 0; $i < sizeof($previous_articles); $i++) {
             <!-- end page title -->
 
 
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-left" id="nestable_list_menu">
                         <a href="?pid=3">
-                            <button type="button" class="btn btn-purple btn-sm waves-effect mb-3 waves-light"
-                                    data-action="expand-all"><i class="mdi mdi-plus mr-1"></i>新建文章
-                            </button>
+                        <button type="button" class="btn btn-primary waves-effect waves-effect mb-3 waves-light">
+                            <i class="mdi mdi-plus"></i>
+                            新建文章
+                        </button>
                         </a>
                     </div>
                 </div> <!-- end col -->

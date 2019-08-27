@@ -14,10 +14,16 @@
     font-family: 'SOURCE SONG';
     color: #353535;
 }
+body{
+    background: #f8f8f8;
+}
 
 .main_content{
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    max-width:1500px;
+    margin: 0 auto;
+    background: #ffffff;
     overflow-y: hidden;
     overflow-x: scroll;
     padding: 40px;
@@ -173,6 +179,8 @@
     cursor: pointer;
 }
 
+
+/*底部菜单*/
 #bottom_menu .content{
     width: 90%;
     max-width:1000px;
@@ -180,7 +188,7 @@
 }
 
 #bottom_menu .content .progress{
-    width: 80%;
+    width: 70%;
     height: 100px;
     background: rgba(0,0,0,0);
     margin: 0 auto;
@@ -221,6 +229,42 @@
     transition: right 200ms ease-in-out;
 }
 
+/*上部菜单*/
+#top_menu .left_functions{
+    width: 50%;
+    max-width:750px;
+    padding: 0 20px;
+    float: left;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.left_functions::-webkit-scrollbar {
+    display: none !important
+}
+
+
+#top_menu .left_functions i{
+    margin: 0 0 0 10px;
+}
+
+#top_menu .left_functions a{
+    text-decoration: none;
+}
+
+#top_menu .right_name{
+    font-size: 20pt;
+    line-height: 60px;
+    float: right;
+    display: block;
+    padding: 20px;
+    width: 50%;
+    text-align: right;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .float_left{
     float: left;
@@ -230,4 +274,131 @@
 }
 .float_center{
     margin: 0 auto;
+}
+
+
+
+
+.tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-break: auto;
+    line-height: 1.42857143;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    white-space: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    font-size: 12px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    padding: 5px 0;
+}
+
+.tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+.tooltip.top {
+    margin-top: -3px;
+}
+
+.tooltip.right {
+    margin-left: 3px;
+}
+
+.tooltip.bottom {
+    margin-top: 3px;
+}
+
+.tooltip.left {
+    margin-left: -3px;
+}
+
+.tooltip-inner {
+    max-width: 220px;
+    color: #fff;
+    text-align: center;
+    background-color: #5b5b5b;
+    padding: 5px;
+    border-radius: 2px
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid
+}
+
+.carousel, .carousel-inner {
+    position: relative
+}
+
+.tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #5b5b5b
+}
+
+.tooltip.top-left .tooltip-arrow {
+    right: 5px
+}
+
+.tooltip.top-right .tooltip-arrow {
+    left: 5px
+}
+
+.tooltip.right .tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #5b5b5b
+}
+
+.tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #5b5b5b
+}
+
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow {
+    border-width: 0 5px 5px;
+    border-bottom-color: #5b5b5b;
+    top: 0
+}
+
+.tooltip.bottom .tooltip-arrow {
+    left: 50%;
+    margin-left: -5px
+}
+
+.tooltip.bottom-left .tooltip-arrow {
+    right: 5px;
+    margin-top: -5px
+}
+
+.tooltip.bottom-right .tooltip-arrow {
+    left: 5px;
+    margin-top: -5px
+}
+
+
+.fade.in {
+    opacity: 1
 }

@@ -118,7 +118,7 @@ if (isset($_GET["id"])) {
                         </div>
 
 
-                        <aside class="col-md-4 col-sm-5 hidden-xs">
+                        <aside class="col-md-4 col-sm-5">
 
 
                             <div class="card subscribe mdc-bg-blue-900">

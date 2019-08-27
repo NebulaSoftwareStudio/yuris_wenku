@@ -49,6 +49,10 @@ $max_page = $article_count < 10 ? 0 : (int)($article_count / 10);
 $hot_article = select_more_data("select * from `article` where `publish` = 1 order by `view` desc limit 0,5");
 
 
+//获取banner
+$banner_list = select_more_data("select * from `banner` order by `order_by`");
+
+
 ?>
 
 <section class="section" style="overflow: hidden;">
@@ -125,24 +129,18 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
             <div id="banner" class="swiper-container ">
                 <div class="swiper-wrapper">
 
+                    <?php for($i=0;$i<sizeof($banner_list);$i++){ ?>
+
                     <div class="swiper-slide">
-                        <a href="javascript:" rel="6"
+                        <a href="<?php echo $banner_list[$i]["url"]; ?>" rel="<?php echo $banner_list[$i]["ID"]; ?>"
                            target="_blank"
-                           title="vr">
-                            <img src="assets/image/banner/index/wenku_banner1.jpg"
-                                 alt="vr">
+                           title="<?php echo $banner_list[$i]["name"]; ?>">
+                            <img src="<?php echo $banner_list[$i]["image"]; ?>"
+                                 alt="<?php echo $banner_list[$i]["name"]; ?>">
                         </a>
                     </div>
 
-
-                    <div class="swiper-slide">
-                        <a href="javascript:" rel="6"
-                           target="_blank"
-                           title="vr">
-                            <img src="assets/image/banner/index/wenku_banner2.jpg"
-                                 alt="vr">
-                        </a>
-                    </div>
+                    <?php } ?>
 
                 </div>
                 <!-- Add Pagination -->
@@ -278,7 +276,7 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
                         <?php if ($page > 0) { ?>
                             <li>
                                 <a href="?page=<?php echo $page-1; ?>" aria-label="Previous">
-                                    <i class="zmdi zmdi-chevron-right"></i>
+                                    <i class="zmdi zmdi-chevron-left"></i>
                                 </a>
                             </li>
                         <?php } else { ?>
@@ -316,22 +314,12 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
 
 
             <!--********************************右侧栏*****************************************-->
-            <aside class="col-md-4 col-sm-5 hidden-xs">
+            <aside class="col-md-4 col-sm-5">
                 <div class="container" style="margin-bottom: 20px;width: 100%;">
                     <h2>&nbsp;</h2>
                 </div>
 
-                <?php if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "on") { ?>
-                    <div class="card subscribe mdc-bg-green-600 text-left">
-                        <h2 class="text-left">您目前正使用HTTPS加密方式访问Yuris文库</h2>
-                        <small class="text-left">如非必要，请尽量使用HTTPS加密方式访问Yuris文库。使用未加密的方式进行访问将增加页面被篡改的可能。</small>
-                    </div>
-                <?php } else { ?>
-                    <div class="card subscribe mdc-bg-red-600">
-                        <h2 class="text-left">您未使用HTTPS方式访问Yuris文库</h2>
-                        <small class="text-left">如非必要，请尽量使用HTTPS加密方式访问Yuris文库。使用未加密的方式进行访问将增加页面被篡改的可能。</small>
-                    </div>
-                <?php } ?>
+                <?php require "theme/model/https.php"; ?>
 
 
                 <!--文库统计-->
@@ -359,11 +347,13 @@ $hot_article = select_more_data("select * from `article` where `publish` = 1 ord
                         <?php for ($i = 0; $i < sizeof($hot_article); $i++) { ?>
                             <a href="article.php?id=<?php echo $hot_article[$i]["ID"] ?>"
                                class="list-group-item media">
+                                <?php if($hot_article[$i]["image"] !== ''){?>
                                 <div class="pull-left" style="max-height: 45px;overflow: hidden;">
                                     <img src="<?php echo $hot_article[$i]["image"] ?>"
                                          alt="<?php echo $hot_article[$i]["title"] ?>" class="list-group__img"
                                          width="65">
                                 </div>
+                                <?php } ?>
                                 <div class="media-body list-group__text">
                                     <strong><?php echo $hot_article[$i]["title"] ?></strong>
                                     <small><?php echo $hot_article[$i]["description"] ?></small>

@@ -48,7 +48,9 @@ $book_classify = select_more_data("select * from `book_classify` where `special`
                 <div class="col-lg-12">
                     <div class="text-left" id="nestable_list_menu">
                         <button type="button" class="btn btn-primary waves-effect waves-effect mb-3 waves-light"
-                                data-toggle="modal" data-target="#edit_book_model">新建书籍
+                                data-toggle="modal" data-target="#edit_book_model">
+                            <i class="mdi mdi-plus"></i>
+                            新建书籍
                         </button>
                     </div>
                 </div> <!-- end col -->
@@ -122,7 +124,7 @@ $book_classify = select_more_data("select * from `book_classify` where `special`
                         <p class="h1 text-muted"><i class="mdi mdi-cloud-upload"></i></p>
                         <h3>点击此区域可上传书籍封面</h3>
                         <span class="text-muted font-13">请上传 2409px × 3311px 大小的封面，不符合条件的图片将拒绝上传。封面制作模板（<a
-                                    href="../assets/image/cover/book/book_cover.psd"><i class="mdi mdi-download"></i> PSD</a>）</span>
+                                    href="../assets/image/cover/book/cover_demo.psd"><i class="mdi mdi-download"></i> PSD</a>）</span>
                     </div>
                 </div>
                 <input type="file" id="select_book_image"

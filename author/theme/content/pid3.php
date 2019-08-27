@@ -4,7 +4,7 @@
  */
 
 
-$book_list = select_more_data("select * from `book_list` where `author` = '".$user_info["ID"]."' order by `time` desc");
+$book_list = @select_more_data("select * from `book_list` where `author` = '".$user_info["ID"]."' order by `time` desc");
 
 if(isset($_GET["mode"])&&isset($_GET["article_id"])){
     $article_id = $_GET["article_id"];
@@ -61,7 +61,7 @@ else{
 
                                 <p class="card-text">Yuris文库目前正在使用第三方的开源可视化编辑器，采用可视化编辑的HTML代码形式存储，可能会存在bug。如果在使用过程中有任何意见或建议，欢迎使用本站工单系统提交反馈。</p>
                                 <p class="card-text">
-                                    <small class="text-muted">此为全部33条中的第2条</small>
+                                    <small class="text-muted">切换至 Kitoko 编辑器</small>
                                 </p>
                             </div>
 
@@ -79,9 +79,13 @@ else{
                                         </button>
                                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
                                             <span class="dropdown-header">请选择文集：</span>
+                                            <?php if(sizeof($book_list)>0){ ?>
                                             <?php for($i=0;$i<sizeof($book_list);$i++){?>
                                             <a class="dropdown-item" href="javascript:"
                                                onclick="change_article_book_id('<?php echo $book_list[$i]["ID"]; ?>','<?php echo $book_list[$i]["name"];?>')"><?php echo $book_list[$i]["name"];?></a>
+                                            <?php } ?>
+                                            <?php }else{ ?>
+                                                <a class="dropdown-item text-danger" href="./?pid=1" >暂无书籍，请先创建</a>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -126,7 +130,6 @@ else{
 
                             <?php if(isset($article_content)){ ?>
                                 <script>
-
                                     setTimeout(function () {
                                         let name_dom = document.getElementById("article_book_name");
                                         let article_image_box = document.getElementById("article_image_box");

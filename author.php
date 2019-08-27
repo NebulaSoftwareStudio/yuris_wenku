@@ -96,12 +96,14 @@ require "theme/model/menu.html";
                         <?php if (sizeof($recent_update_article) > 0) { ?>
                             <div class="list-group">
                                 <?php for ($i = 0; $i < sizeof($recent_update_article); $i++) { ?>
-                                    <a href="article.php?id=1" class="list-group-item media">
-                                        <div class="pull-left" style="max-height: 45px;overflow: hidden;">
-                                            <img src="<?php echo $recent_update_article[$i]["image"]; ?>"
-                                                 alt="<?php echo $recent_update_article[$i]["title"]; ?>"
-                                                 class="list-group__img" width="65">
-                                        </div>
+                                    <a href="article.php?id=<?php echo $recent_update_article[$i]["ID"] ?>" class="list-group-item media">
+                                        <?php if($recent_update_article[$i]["image"] !== ''){?>
+                                            <div class="pull-left" style="max-height: 45px;overflow: hidden;">
+                                                <img src="<?php echo $recent_update_article[$i]["image"] ?>"
+                                                     alt="<?php echo $recent_update_article[$i]["title"] ?>" class="list-group__img"
+                                                     width="65">
+                                            </div>
+                                        <?php } ?>
                                         <div class="media-body list-group__text">
                                             <strong><?php echo $recent_update_article[$i]["title"]; ?></strong>
                                             <small><?php echo $recent_update_article[$i]["description"]; ?></small>

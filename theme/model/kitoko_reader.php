@@ -39,6 +39,7 @@
     <!-- CSS 外联样式 -->
     <link rel="stylesheet" href="assets/css/kitoko_reader.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="author/assets/css/bootstrap.min.css">-->
 
 
 
@@ -47,6 +48,35 @@
 
 <!--********************************上部菜单*****************************************-->
 <div id="top_menu" class="top_menu_hide" style="display: none;">
+
+    <div class="left_functions">
+        <div></div>
+        <a href="./" class="tooltip-show" data-toggle="tooltip" data-placement="bottom" title="返回主页">
+            <i class="fa fa-home"></i>
+        </a>
+        <a href="javascript:" class="tooltip-show" onclick="window.history.back()"
+           data-toggle="tooltip" data-placement="bottom" title="返回上一页">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <a href="javascript:" id="fullscreen_controller" onclick="requestFullScreen();" class="tooltip-show"
+           data-toggle="tooltip" data-placement="bottom" title="全屏/退出全屏">
+            <i class="fa fa-arrows-alt"></i>
+        </a>
+        <a href="javascript:" class="tooltip-show"
+           data-toggle="tooltip" data-placement="bottom" title="设置">
+            <i class="fa fa-cogs"></i>
+        </a>
+        <a href="javascript:" class="tooltip-show"
+           data-toggle="tooltip" data-placement="bottom" title="关于 Kitoko">
+            <i class="fa fa-info-circle"></i>
+        </a>
+        <a href="javascript:" class="tooltip-show" onclick="delete_cookie('display_mode');window.location.reload();"
+           data-toggle="tooltip" data-placement="bottom" title="使用默认阅读器">
+            <i class="fa fa-sign-out"></i>
+        </a>
+    </div>
+
+    <div class="right_name"><?php echo $article_info["title"]; ?></div>
 
 </div>
 
@@ -145,7 +175,10 @@
 
 <!-- jQuery -->
 <script src="assets/js/jquery.min.js"></script>
-
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+    $(function () { $('.tooltip-show').tooltip();});
+</script>
 <script src="assets/js/kitoko_reader.js"></script>
 
 </body>

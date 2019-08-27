@@ -129,3 +129,53 @@ function change_reading_progress() {
     main_content.scrollTo(scrollOptions);
 
 }
+
+
+
+
+//进入全屏
+function requestFullScreen(element) {
+    let de = document.querySelector(element) || document.documentElement;
+    if (de.requestFullscreen) {
+        de.requestFullscreen();
+    } else if (de.mozRequestFullScreen) {
+        de.mozRequestFullScreen();
+    } else if (de.webkitRequestFullScreen) {
+        de.webkitRequestFullScreen();
+    }
+
+    $("#fullscreen_controller").attr("onclick","exitFullscreen()");
+}
+//退出全屏
+function exitFullscreen(element) {
+    let de = document.querySelector(element) || document.documentElement;
+    if (de.exitFullscreen) {
+        de.exitFullscreen();
+    } else if (de.mozCancelFullScreen) {
+        de.mozCancelFullScreen();
+    } else if (de.webkitCancelFullScreen) {
+        de.webkitCancelFullScreen();
+    }
+
+    $("#fullscreen_controller").attr("onclick","requestFullScreen()");
+}
+
+
+
+
+function delete_cookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval = get_cookie(name);
+    if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+
+
+function get_cookie(name) {
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    if(arr=document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}
